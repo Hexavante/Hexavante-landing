@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { FeatureCards } from "@/components/feature-cards";
+import { CompeteSection, PlatformSection } from "@/components/showcase-sections";
 import { Badge } from "@/components/badge";
 import { CourseCard, ExamCard, TutorialCard, EmptyState } from "@/components/cards";
 import {
@@ -259,6 +260,12 @@ export default async function HomePage() {
             </Link>
           </div>
         </section>
+
+        {/* ───── COMPETIR (vitrine visual) ───── */}
+        <CompeteSection />
+
+        {/* ───── PLATAFORMA (vitrine visual) ───── */}
+        <PlatformSection />
 
         {/* ───── CERTIFICATES ───── */}
         <section id="certificados" className="border-t border-white/[0.06] bg-white/[0.02] py-24 sm:py-32">
