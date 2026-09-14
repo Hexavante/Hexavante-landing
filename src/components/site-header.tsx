@@ -59,19 +59,19 @@ const megaMenus: Record<string, MegaMenuCategory> = {
   competir: {
     title: "Competir",
     items: [
-      { href: "/#competir-ranking", label: "Ranking", description: "Suba no ranking e compita com outros estudantes", icon: Trophy, iconColor: "text-amber-400" },
-      { href: "/#competir-loja", label: "Loja", description: "Personalize seu perfil com itens e cosméticos", icon: ShoppingBag, iconColor: "text-violet-400" },
-      { href: "/#competir-ao-vivo", label: "Salas ao vivo", description: "Estude em grupo com aulas ao vivo e interação", icon: Radio, iconColor: "text-rose-400" },
-      { href: "/#competir-conquistas", label: "Conquistas", description: "Desbloqueie emblemas e recompensas", icon: Crown, iconColor: "text-yellow-400" },
+      { href: `${APP_URL}/ranking`, label: "Ranking", description: "Suba no ranking e compita com outros estudantes", icon: Trophy, iconColor: "text-amber-400" },
+      { href: `${APP_URL}/shop`, label: "Loja", description: "Personalize seu perfil com itens e cosméticos", icon: ShoppingBag, iconColor: "text-violet-400" },
+      { href: `${APP_URL}/live-rooms`, label: "Salas ao vivo", description: "Estude em grupo com aulas ao vivo e interação", icon: Radio, iconColor: "text-rose-400" },
+      { href: `${APP_URL}/conquistas`, label: "Conquistas", description: "Desbloqueie emblemas e recompensas", icon: Crown, iconColor: "text-yellow-400" },
     ],
   },
   plataforma: {
     title: "Plataforma",
     items: [
-      { href: "/#plataforma-estatisticas", label: "Estatísticas", description: "Acompanhe seu desempenho com gráficos detalhados", icon: BarChart3, iconColor: "text-teal-400" },
-      { href: "/#plataforma-hexa", label: "Hexa", description: "O sistema de evolução e progressão do Hexavante", icon: Hexagon, iconColor: "text-amber-400" },
-      { href: "/#plataforma-ajuda", label: "Ajuda", description: "Dúvidas frequentes e suporte", icon: HelpCircle, iconColor: "text-sky-400" },
-      { href: "/#plataforma-sobre", label: "Sobre", description: "Conheça a missão e a equipe por trás do Hexavante", icon: Users, iconColor: "text-pink-400" },
+      { href: `${APP_URL}/estatisticas`, label: "Estatísticas", description: "Acompanhe seu desempenho com gráficos detalhados", icon: BarChart3, iconColor: "text-teal-400" },
+      { href: `${APP_URL}/hexa`, label: "Hexa", description: "O sistema de evolução e progressão do Hexavante", icon: Hexagon, iconColor: "text-amber-400" },
+      { href: `${APP_URL}/ajuda`, label: "Ajuda", description: "Dúvidas frequentes e suporte", icon: HelpCircle, iconColor: "text-sky-400" },
+      { href: `${APP_URL}/sobre`, label: "Sobre", description: "Conheça a missão e a equipe por trás do Hexavante", icon: Users, iconColor: "text-pink-400" },
     ],
   },
 };
