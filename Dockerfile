@@ -9,6 +9,7 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN mkdir -p public
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG NEXT_PUBLIC_API_URL=https://api.hexavante.com.br
 ARG NEXT_PUBLIC_APP_URL=https://app.hexavante.com.br
