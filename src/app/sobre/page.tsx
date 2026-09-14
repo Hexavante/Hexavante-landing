@@ -4,20 +4,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { TeamDice, TEAM } from "@/components/team-dice";
+import { TeamDice } from "@/components/team-dice";
+import { TEAM, initials } from "@/lib/team";
 import { APP_URL, getSession } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
-
-function initials(name: string): string {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
-}
 
 export default async function SobrePage() {
   const session = await getSession();

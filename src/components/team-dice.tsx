@@ -2,20 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Dices } from "lucide-react";
-
-export type TeamMember = {
-  name: string;
-  role: string;
-};
-
-export const TEAM: TeamMember[] = [
-  { name: "Nicolas Kirsch Mazzini", role: "CEO / Desenvolvedor Full-Stack e Coordenador Geral" },
-  { name: "Nicolas das Virgens Souza", role: "CEO / Pesquisa e Planejamento Estratégico" },
-  { name: "Gabriella Bittencourt", role: "Redação Técnica e Documentação (ABNT)" },
-  { name: "Ítalo Tavaroni", role: "Desenvolvedor Backend e Banco de Dados" },
-  { name: "João Otávio Lima de Melo", role: "Modelo de Negócios e Marketing" },
-  { name: "Renato Serrano", role: "Desenvolvedor Frontend e Site Institucional" },
-];
+import { TEAM } from "@/lib/team";
 
 const PIPS: Record<number, number[]> = {
   1: [5],
@@ -26,7 +13,7 @@ const PIPS: Record<number, number[]> = {
   6: [1, 3, 4, 6, 7, 9],
 };
 
-function initials(name: string): string {
+function memberInitials(name: string): string {
   return name
     .split(" ")
     .filter(Boolean)
@@ -103,7 +90,7 @@ export function TeamDice() {
       {member ? (
         <div key={`${member.name}-${rolls}`} className="anim-enter-scale mt-8 rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.06] p-8">
           <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-cyan-400/20 text-xl font-black text-cyan-300">
-            {initials(member.name)}
+            {memberInitials(member.name)}
           </span>
           <p className="mt-4 text-xl font-black text-white">{member.name}</p>
           <p className="mx-auto mt-2 max-w-sm text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
