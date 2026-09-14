@@ -1,8 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Dices } from "lucide-react";
 import { TEAM } from "@/lib/team";
+
+const SIZE = 112;
+const HALF = SIZE / 2;
 
 const PIPS: Record<number, number[]> = {
   1: [5],
@@ -13,32 +16,63 @@ const PIPS: Record<number, number[]> = {
   6: [1, 3, 4, 6, 7, 9],
 };
 
-function memberInitials(name: string): string {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
+/* Rotação que traz cada face para frente */
+const FACE_ROTATION: Record<number, { x: number; y: number }> = {
+  1: { x: 0, y: 0 },
+  6: { x: 0, y: 180 },
+  3: { x: 0, y: -90 },
+  4: { x: 0, y: 90 },
+  2: { x: -90, y: 0 },
+  5: { x: 90, y: 0 },
+};
+
+const FACE_TRANSFORM: Record<number, string> = {
+  1: `rotateY(0deg) translateZ(${HALF}px)`,
+  2: `rotateX(90deg) translateZ(${HALF}px)`,
+  3: `rotateY(90deg) translateZ(${HALF}px)`,
+  4: `rotateY(-90deg) translateZ(${HALF}px)`,
+  5: `rotateX(-90deg) translateZ(${HALF}px)`,
+  6: `rotateY(180deg) translateZ(${HALF}px)`,
+};
+
+function spinTo(current: number, target: number): number {
+  const norm = ((current % 360) + 360) % 360;
+  const tNorm = ((target % 360) + 360) % 360;
+  const delta = (tNorm - norm + 360) % 360;
+  return current + 720 + Math.floor(Math.random() * 2) * 360 + delta;
+}
+
+function Face({ value }: { value: number }) {
+  return (
+    <div
+      className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-1 rounded-2xl border border-white/15 bg-gradient-to-br from-cyan-500/25 to-violet-500/25 p-3 shadow-[inset_0_0_24px_rgba(0,0,0,0.45)] backdrop-blur"
+      style={{ transform: FACE_TRANSFORM[value], width: SIZE, height: SIZE }}
+    >
+      {Array.from({ length: 9 }, (_, i) => i + 1).map((pos) => (
+        <span key={pos} className="grid place-items-center">
+          {PIPS[value].includes(pos) && (
+            <span className="h-3 w-3 rounded-full bg-cyan-200 shadow-[0_0_10px_rgba(34,211,238,0.9)]" />
+          )}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 export function TeamDice() {
-  const [face, setFace] = useState(6);
+  const [rotation, setRotation] = useState({ x: -18, y: 24 });
   const [rolling, setRolling] = useState(false);
   const [index, setIndex] = useState<number | null>(null);
   const [rolls, setRolls] = useState(0);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const roll = () => {
     if (rolling) return;
     setRolling(true);
-    timer.current = setInterval(() => {
-      setFace(1 + Math.floor(Math.random() * 6));
-    }, 90);
+    const resultFace = 1 + Math.floor(Math.random() * 6);
+    const target = FACE_ROTATION[resultFace];
+    setRotation((r) => ({ x: spinTo(r.x, target.x), y: spinTo(r.y, target.y) }));
 
     setTimeout(() => {
-      if (timer.current) clearInterval(timer.current);
       setIndex((prev) => {
         let next = Math.floor(Math.random() * TEAM.length);
         if (TEAM.length > 1) {
@@ -46,10 +80,9 @@ export function TeamDice() {
         }
         return next;
       });
-      setFace(1 + Math.floor(Math.random() * 6));
       setRolling(false);
-      setRolls((r) => r + 1);
-    }, 900);
+      setRolls((n) => n + 1);
+    }, 1150);
   };
 
   const member = index !== null ? TEAM[index] : null;
@@ -61,27 +94,30 @@ export function TeamDice() {
         onClick={roll}
         disabled={rolling}
         title="Rolar o dado"
-        className={`relative mx-auto grid h-28 w-28 place-items-center rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 shadow-2xl transition hover:border-cyan-400/40 disabled:opacity-90 ${
-          rolling ? "animate-bounce" : "hover:scale-105"
-        }`}
-        style={{ boxShadow: "0 20px 50px -12px rgb(0 0 0 / 0.5)" }}
+        className="mx-auto block cursor-pointer disabled:cursor-wait"
+        style={{ perspective: "700px" }}
       >
-        <span className="grid h-20 w-20 grid-cols-3 grid-rows-3 gap-1 p-2">
-          {Array.from({ length: 9 }, (_, i) => i + 1).map((pos) => (
-            <span key={pos} className="grid place-items-center">
-              {PIPS[face].includes(pos) && (
-                <span className="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-              )}
-            </span>
+        <div
+          className="relative"
+          style={{
+            width: SIZE,
+            height: SIZE,
+            transformStyle: "preserve-3d",
+            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            transition: "transform 1.1s cubic-bezier(.2,.8,.25,1)",
+          }}
+        >
+          {[1, 2, 3, 4, 5, 6].map((f) => (
+            <Face key={f} value={f} />
           ))}
-        </span>
+        </div>
       </button>
 
       <button
         type="button"
         onClick={roll}
         disabled={rolling}
-        className="hx-hero-btn mx-auto mt-6 px-8 py-3.5"
+        className="hx-hero-btn mx-auto mt-8 px-8 py-3.5"
       >
         <Dices className="h-4 w-4" />
         {rolling ? "Rolando..." : index === null ? "Rolar o dado" : "Rolar novamente"}
@@ -90,7 +126,7 @@ export function TeamDice() {
       {member ? (
         <div key={`${member.name}-${rolls}`} className="anim-enter-scale mt-8 rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.06] p-8">
           <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-cyan-400/20 text-xl font-black text-cyan-300">
-            {memberInitials(member.name)}
+            {member.name.split(" ").filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
           </span>
           <p className="mt-4 text-xl font-black text-white">{member.name}</p>
           <p className="mx-auto mt-2 max-w-sm text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
