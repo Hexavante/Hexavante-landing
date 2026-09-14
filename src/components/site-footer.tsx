@@ -25,9 +25,10 @@ const resourceLinks = [
 ];
 
 const socialLinks = [
-  { label: "YouTube", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "Discord", href: "#" },
+  { label: "YouTube", href: "https://www.youtube.com/@Hexavante" },
+  { label: "Instagram", href: "https://www.instagram.com/hexavante_ofc/" },
+  { label: "TikTok", href: "https://www.tiktok.com/@hexavante_ofc" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/hexa-vante-97b55542b/" },
 ];
 
 export function SiteFooter() {
