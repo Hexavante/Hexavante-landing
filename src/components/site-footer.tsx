@@ -8,8 +8,8 @@ const productLinks = [
   { label: "Cursos", href: "/cursos" },
   { label: "Tutoriais", href: "/tutorials" },
   { label: "Simulados", href: "/simulados" },
-  { label: "Ranking", href: `${APP_URL}/ranking` },
-  { label: "Loja", href: `${APP_URL}/shop` },
+  { label: "Competir", href: "/competir" },
+  { label: "Plataforma", href: "/plataforma" },
 ];
 
 const companyLinks = [
