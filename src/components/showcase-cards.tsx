@@ -187,12 +187,12 @@ export function PlatformCards() {
         </div>
       </CardShell>
 
-      <CardShell id="plataforma-sobre" href={`${APP_URL}/sobre`}>
+      <CardShell id="plataforma-sobre" href="/sobre">
         <CardHead
           icon={<Users className="h-5 w-5" />}
           iconClass="text-pink-400"
           title="Sobre"
-          description="Conheça a missão e a equipe por trás do Hexavante."
+          description="Conheça a equipe do TCC por trás do Hexavante."
         />
         <div className="mt-5 flex items-center gap-2">
           {["H", "E", "X"].map((l) => (

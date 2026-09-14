@@ -71,7 +71,7 @@ const megaMenus: Record<string, MegaMenuCategory> = {
       { href: "/plataforma#plataforma-estatisticas", label: "Estatísticas", description: "Acompanhe seu desempenho com gráficos detalhados", icon: BarChart3, iconColor: "text-teal-400" },
       { href: "/plataforma#plataforma-hexa", label: "Hexa", description: "O sistema de evolução e progressão do Hexavante", icon: Hexagon, iconColor: "text-amber-400" },
       { href: "/plataforma#plataforma-ajuda", label: "Ajuda", description: "Dúvidas frequentes e suporte", icon: HelpCircle, iconColor: "text-sky-400" },
-      { href: "/plataforma#plataforma-sobre", label: "Sobre", description: "Conheça a missão e a equipe por trás do Hexavante", icon: Users, iconColor: "text-pink-400" },
+      { href: "/plataforma#plataforma-sobre", label: "Sobre", description: "Conheça a equipe do TCC por trás do Hexavante", icon: Users, iconColor: "text-pink-400" },
     ],
   },
 };

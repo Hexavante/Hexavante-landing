@@ -13,7 +13,7 @@ const productLinks = [
 ];
 
 const companyLinks = [
-  { label: "Sobre nós", href: `${APP_URL}/ajuda` },
+  { label: "Sobre nós", href: "/sobre" },
   { label: "Blog", href: `${APP_URL}/ajuda` },
   { label: "Carreiras", href: `${APP_URL}/ajuda` },
 ];
