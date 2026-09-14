@@ -247,6 +247,51 @@ export async function getSession(): Promise<SessionUser | null> {
   }
 }
 
+export interface RankEntry {
+  rank: number;
+  userId: string;
+  username: string | null;
+  fullName: string;
+  avatarUrl: string | null;
+  level: number;
+  totalXp: number;
+  league: string;
+}
+
+export async function getLeaderboard(limit = 8): Promise<RankEntry[]> {
+  const res = await getJson<{ data: RankEntry[] }>(`/api/v1/rankings?limit=${limit}`);
+  return res?.data ?? [];
+}
+
+export interface Achievement {
+  key: string;
+  name: string;
+  description: string;
+}
+
+export async function getAchievements(): Promise<Achievement[]> {
+  const res = await getJson<{ achievements: Achievement[] }>("/api/v1/achievements");
+  return res?.achievements ?? [];
+}
+
+export interface LiveRoom {
+  id: string;
+  title: string;
+  description: string | null;
+  status: string;
+  maxParticipants: number;
+  participantCount: number;
+  scheduledAt: string;
+  startedAt: string | null;
+  endedAt: string | null;
+  instructor: { id: string; username: string | null; fullName: string };
+}
+
+export async function getLiveRooms(): Promise<LiveRoom[]> {
+  const res = await getJson<{ rooms: LiveRoom[] }>("/api/v1/live-rooms");
+  return res?.rooms ?? [];
+}
+
 export async function getMyCertificates(): Promise<Certificate[] | null> {
   try {
     const cookie = (await headers()).get("cookie");
