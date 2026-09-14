@@ -222,6 +222,31 @@ export async function getExam(id: string): Promise<Exam | null> {
   return res?.exam ?? null;
 }
 
+export interface SessionUser {
+  id: string;
+  name: string;
+  email: string;
+  username: string | null;
+  avatarUrl: string | null;
+  roles: string[];
+}
+
+export async function getSession(): Promise<SessionUser | null> {
+  try {
+    const cookie = (await headers()).get("cookie");
+    if (!cookie) return null;
+    const res = await fetch(`${API_BASE}/api/v1/auth/session`, {
+      headers: { cookie },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { user: SessionUser };
+    return data.user ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getMyCertificates(): Promise<Certificate[] | null> {
   try {
     const cookie = (await headers()).get("cookie");

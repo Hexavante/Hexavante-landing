@@ -78,14 +78,14 @@ export function TypePills({
 
   return (
     <div className="mb-8 flex flex-wrap gap-2">
-      <a href={hrefFor(undefined)} className={`hx-pill ${!current ? "hx-pill-active" : ""}`}>
+      <a href={hrefFor(undefined)} className={`hx-filter-pill ${!current ? "hx-filter-pill-active" : "hx-filter-pill-inactive"}`}>
         Todos
       </a>
       {items.map((item) => (
         <a
           key={item.value}
           href={hrefFor(item.value)}
-          className={`hx-pill ${current === item.value ? "hx-pill-active" : ""}`}
+          className={`hx-filter-pill ${current === item.value ? "hx-filter-pill-active" : "hx-filter-pill-inactive"}`}
         >
           {item.label}
         </a>
