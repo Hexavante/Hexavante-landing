@@ -1,4 +1,5 @@
 import { BarChart3, Crown, HelpCircle, Hexagon, Radio, ShoppingBag, Trophy, Users, Lock } from "lucide-react";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
@@ -16,7 +17,7 @@ function CardShell({
     <a
       id={id}
       href={href}
-      className="group block scroll-mt-28 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition hover:border-white/[0.12] hover:bg-white/[0.06]"
+      className="group block scroll-mt-28 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/25 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_-15px_rgba(34,211,238,0.3)]"
     >
       {children}
     </a>
@@ -147,7 +148,11 @@ export function PlatformCards() {
         <div className="mt-5 rounded-lg bg-white/[0.03] p-3">
           <div className="flex h-16 items-end justify-between gap-1">
             {[40, 65, 50, 80, 70, 90, 85].map((h, i) => (
-              <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-teal-400/40 to-teal-400/10" style={{ height: `${h}%` }} />
+              <div
+                key={i}
+                className="animate-fade-in-up flex-1 rounded-t bg-gradient-to-t from-teal-400/40 to-teal-400/10"
+                style={{ height: `${h}%`, animationDelay: `${i * 90}ms` }}
+              />
             ))}
           </div>
         </div>
@@ -163,10 +168,11 @@ export function PlatformCards() {
         <div className="mt-5 rounded-lg bg-white/[0.03] p-3">
           <div className="flex items-center justify-between text-xs">
             <span className="font-bold text-white">Nível 12</span>
-            <span className="text-amber-300">Hexa ✦</span>
+            <span className="animate-pulse-glow text-amber-300">Hexa ✦</span>
           </div>
-          <div className="mt-2 h-2 w-full rounded-full bg-white/10">
+          <div className="relative mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
             <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-amber-400 to-orange-500" />
+            <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
           </div>
         </div>
       </CardShell>
@@ -176,15 +182,9 @@ export function PlatformCards() {
           icon={<HelpCircle className="h-5 w-5" />}
           iconClass="text-sky-400"
           title="Ajuda"
-          description="Dúvidas frequentes e suporte."
+          description="Dúvidas frequentes e suporte. Toque para expandir:"
         />
-        <div className="mt-5 space-y-2">
-          {["Como funcionam os certificados?", "Como participo do ranking?"].map((q) => (
-            <div key={q} className="rounded-lg bg-white/[0.03] px-3 py-2.5 text-xs text-white/60">
-              {q}
-            </div>
-          ))}
-        </div>
+        <FaqAccordion />
       </CardShell>
 
       <CardShell id="plataforma-sobre" href="/sobre">
@@ -195,8 +195,12 @@ export function PlatformCards() {
           description="Conheça a equipe do TCC por trás do Hexavante."
         />
         <div className="mt-5 flex items-center gap-2">
-          {["H", "E", "X"].map((l) => (
-            <span key={l} className="grid h-10 w-10 place-items-center rounded-full bg-white/[0.05] text-xs font-black text-white/60">
+          {["H", "E", "X"].map((l, i) => (
+            <span
+              key={l}
+              className="animate-float grid h-10 w-10 place-items-center rounded-full bg-white/[0.05] text-xs font-black text-white/60 transition-transform duration-300 hover:scale-110 hover:bg-cyan-400/20 hover:text-cyan-300"
+              style={{ animationDelay: `${i * 400}ms` }}
+            >
               {l}
             </span>
           ))}

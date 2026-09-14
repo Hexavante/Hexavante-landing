@@ -1,4 +1,4 @@
-import { ArrowRight, Hexagon } from "lucide-react";
+import { ArrowRight, BarChart3, HelpCircle, Hexagon, Users } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
@@ -33,13 +33,30 @@ export default async function PlataformaPage() {
                 <p className="mt-5 text-base text-[hsl(var(--sidebar-foreground)/0.56)] sm:text-lg">
                   Estatísticas, evolução, ajuda e muito mais — prévia dos recursos do app.
                 </p>
+                <div className="mt-8 flex items-center justify-center gap-3">
+                  {[
+                    { icon: BarChart3, color: "text-teal-300", bg: "bg-teal-400/15", delay: "0ms" },
+                    { icon: Hexagon, color: "text-amber-300", bg: "bg-amber-400/15", delay: "350ms" },
+                    { icon: HelpCircle, color: "text-sky-300", bg: "bg-sky-400/15", delay: "700ms" },
+                    { icon: Users, color: "text-pink-300", bg: "bg-pink-400/15", delay: "1050ms" },
+                  ].map((f, i) => (
+                    <span
+                      key={i}
+                      className={`animate-float grid h-12 w-12 place-items-center rounded-2xl border border-white/10 ${f.bg} ${f.color}`}
+                      style={{ animationDelay: f.delay }}
+                    >
+                      <f.icon className="h-5 w-5" />
+                    </span>
+                  ))}
+                </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        <section className="border-t border-white/[0.06] py-12 sm:py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <section className="relative border-t border-white/[0.06] py-12 sm:py-16">
+          <div className="animate-bg-breathe pointer-events-none absolute left-1/2 top-0 h-72 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-cyan-500/[0.07] blur-[6rem]" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
             <ScrollReveal>
               <PlatformCards />
             </ScrollReveal>
