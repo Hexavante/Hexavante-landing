@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { HexavanteLogo } from "@/components/brand-logo";
 import { SignOutButton } from "@/components/sign-out-button";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
@@ -192,6 +193,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeSwitcher />
           {user ? (
             <div className="relative">
               <button
@@ -295,6 +297,12 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                 </div>
               );
             })}
+            <div className="flex items-center justify-between rounded-lg border-t border-white/[0.06] px-3 py-2.5">
+              <span className="text-sm font-medium text-[hsl(var(--sidebar-foreground)/0.6)]">
+                Tema
+              </span>
+              <ThemeSwitcher />
+            </div>
             {!user && (
               <div className="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
                 <a
