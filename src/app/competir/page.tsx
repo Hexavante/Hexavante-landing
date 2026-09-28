@@ -138,7 +138,7 @@ export default async function CompetirPage() {
                   Loja de moedas
                 </div>
                 <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
-                  Turbinen seu <span className="hx-accent-text">progresso</span>
+                  Turbinar seu <span className="hx-accent-text">progresso</span>
                 </h2>
                 <p className="mt-4 text-sm text-slate-400 sm:text-base">
                   Pacotes de moedas com dinheiro real. A compra é finalizada com segurança dentro do app.
