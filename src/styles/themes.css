@@ -217,3 +217,23 @@ body.fx-aurora-bg::after {
 [data-theme-mode="light"] .hx-logo-light {
   display: block;
 }
+
+/* ------------------------------------------------------------------
+ * Modo claro: remapeia utilitários hardcoded para dark (o design foi
+ * feito dark-first). Seletores por substring cobrem as variantes com
+ * opacidade (ex: text-white/60). Botões .hx-* usam classes próprias e
+ * NÃO são afetados. Light themes: snow, daylight, cream, pearl.
+ * ------------------------------------------------------------------ */
+[data-theme-mode="light"] [class*="text-white"] {
+  color: #0f172a !important;
+}
+[data-theme-mode="light"] [class*="text-slate-300"],
+[data-theme-mode="light"] [class*="text-slate-400"] {
+  color: #475569 !important;
+}
+[data-theme-mode="light"] [class*="bg-white/"] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+[data-theme-mode="light"] [class*="border-white/"] {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
