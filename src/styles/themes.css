@@ -206,3 +206,14 @@ body.fx-aurora-bg::after {
     animation: none;
   }
 }
+
+/* Logo clara nos temas claros */
+.hx-logo-light {
+  display: none;
+}
+[data-theme-mode="light"] .hx-logo-dark {
+  display: none;
+}
+[data-theme-mode="light"] .hx-logo-light {
+  display: block;
+}
