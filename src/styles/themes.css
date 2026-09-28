@@ -106,6 +106,53 @@
   border-color: transparent;
 }
 
+/* ── Componentes hx-* com text-white via @apply (não alcançados pelo remap
+   genérico de classes no DOM, pois o texto está dentro do CSS compilado) ── */
+[data-theme-mode="light"] .hx-btn-secondary {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: #0f172a;
+}
+[data-theme-mode="light"] .hx-btn-secondary:hover {
+  background: rgba(15, 23, 42, 0.08);
+}
+[data-theme-mode="light"] .hx-btn-ghost {
+  color: #475569;
+}
+[data-theme-mode="light"] .hx-btn-ghost:hover {
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+}
+[data-theme-mode="light"] .hx-input,
+[data-theme-mode="light"] .hx-select,
+[data-theme-mode="light"] .hx-textarea {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.16);
+  color: #0f172a;
+}
+[data-theme-mode="light"] .hx-input::placeholder,
+[data-theme-mode="light"] .hx-select::placeholder,
+[data-theme-mode="light"] .hx-textarea::placeholder {
+  color: rgba(15, 23, 42, 0.45);
+}
+[data-theme-mode="light"] .hx-label {
+  color: #334155;
+}
+[data-theme-mode="light"] .hx-badge-muted {
+  background: rgba(15, 23, 42, 0.07);
+  color: #475569;
+}
+[data-theme-mode="light"] .hx-divider {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+[data-theme-mode="light"] .hx-skeleton,
+[data-theme-mode="light"] .hx-xp-bar {
+  background: rgba(15, 23, 42, 0.08);
+}
+[data-theme-mode="light"] .hx-progress-track {
+  background: rgba(15, 23, 42, 0.1);
+}
+
 /* ═══ Efeitos de tema (fx-*) ═══════════════════════════════════════════ */
 /* Ativados via classes no <body> pelo ThemeSwitcher. */
 
