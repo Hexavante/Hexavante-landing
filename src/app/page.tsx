@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, BookOpen, FileText, GraduationCap, Play, Sparkles, Target, Users, Download } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { HeroImage } from "@/components/hero-image";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { FeatureCards } from "@/components/feature-cards";
@@ -85,14 +85,7 @@ export default async function HomePage() {
               <ScrollReveal delay={200}>
                 <div className="relative hidden lg:block">
                   <div className="absolute inset-0 rounded-full bg-[hsl(var(--sidebar-highlight))]/[0.06] blur-[3rem]" />
-                  <Image
-                    src="/brand/mascote-hero.png"
-                    alt="Mascote Hexavante"
-                    width={420}
-                    height={420}
-                    className="relative h-[340px] w-auto object-contain xl:h-[420px]"
-                    priority
-                  />
+                  <HeroImage />
                 </div>
               </ScrollReveal>
             </div>
