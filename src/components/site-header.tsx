@@ -126,8 +126,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
             imageClassName="hx-header-logo-glow h-12 w-12"
           />
           <span
-            className="text-xl font-black uppercase tracking-[0.25em] hx-accent-text"
-            style={{ textShadow: "0 0 20px hsl(var(--sidebar-highlight) / 0.4)" }}
+            className="hx-wordmark text-xl font-black uppercase tracking-[0.25em] hx-accent-text"
           >
             HEXAVANTE
           </span>

@@ -2,11 +2,11 @@
 
 export function FloatingDecor() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+    <div className="hx-decor pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       {/* Ambient glows */}
-      <div className="absolute left-[-15%] top-[-5%] h-[700px] w-[700px] rounded-full bg-primary/[0.08] blur-[14rem]" />
-      <div className="absolute right-[-8%] top-[10%] h-[500px] w-[500px] rounded-full bg-accent/[0.06] blur-[12rem]" />
-      <div className="absolute bottom-[10%] left-[20%] h-[300px] w-[300px] rounded-full bg-violet-500/[0.04] blur-[10rem]" />
+      <div className="absolute left-[-15%] top-[-5%] h-[700px] w-[700px] rounded-full bg-primary/[0.08] blur-[14rem] hx-dec-glow" />
+      <div className="absolute right-[-8%] top-[10%] h-[500px] w-[500px] rounded-full bg-accent/[0.06] blur-[12rem] hx-dec-glow" />
+      <div className="absolute bottom-[10%] left-[20%] h-[300px] w-[300px] rounded-full bg-violet-500/[0.04] blur-[10rem] hx-dec-glow" />
 
       {/* Floating dots */}
       <svg className="absolute left-[8%] top-[15%] h-2 w-2 animate-pulse" style={{ animationDuration: "3s" }}>

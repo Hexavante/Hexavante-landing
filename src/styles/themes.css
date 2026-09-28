@@ -153,6 +153,42 @@
   background: rgba(15, 23, 42, 0.1);
 }
 
+/* ── Tema claro: wordmark "HEXAVANTE" e decorações de fundo em vermelho
+   (casa com a logo clara, que é vermelha). ── */
+.hx-wordmark {
+  text-shadow: 0 0 18px hsl(var(--sidebar-highlight) / 0.35);
+}
+
+[data-theme-mode="light"] .hx-wordmark {
+  color: #c1121f;
+  text-shadow: 0 0 18px rgba(193, 18, 31, 0.35);
+}
+
+/* wordmark minúsculo do rodapé: vermelho sóbrio, sem brilho */
+[data-theme-mode="light"] .hx-wordmark-subtle {
+  color: rgba(193, 18, 31, 0.55);
+  text-shadow: none;
+}
+
+/* FloatingDecor: pontos, estrelas e formas geométricas */
+[data-theme-mode="light"] .hx-decor [fill]:not([fill="none"]) {
+  fill: #dc2626;
+}
+[data-theme-mode="light"] .hx-decor [stroke]:not([stroke="none"]) {
+  stroke: #dc2626;
+}
+
+/* orbes de luz ambiente do fundo */
+[data-theme-mode="light"] .hx-dec-glow {
+  background-color: rgba(220, 38, 38, 0.09);
+}
+
+/* glows radiais do corpo (inline via applyLandingTheme → precisa !important) */
+[data-theme-mode="light"] {
+  --theme-glow-1: rgba(220, 38, 38, 0.1) !important;
+  --theme-glow-2: rgba(193, 18, 31, 0.07) !important;
+}
+
 /* ═══ Efeitos de tema (fx-*) ═══════════════════════════════════════════ */
 /* Ativados via classes no <body> pelo ThemeSwitcher. */
 

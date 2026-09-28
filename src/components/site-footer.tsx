@@ -44,7 +44,7 @@ export function SiteFooter() {
                 className="gap-0"
                 imageClassName="hx-header-logo-glow h-10 w-10"
               />
-              <span className="text-sm font-extrabold tracking-tight hx-accent-text">
+              <span className="hx-wordmark text-sm font-extrabold tracking-tight hx-accent-text">
                 HEXAVANTE
               </span>
             </Link>
@@ -141,7 +141,7 @@ export function SiteFooter() {
           <p className="text-xs text-[hsl(var(--sidebar-foreground)/0.36)]">
             © {new Date().getFullYear()} Hexavante. Todos os direitos reservados.
           </p>
-          <p className="text-[10px] font-extrabold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.2)]">
+          <p className="hx-wordmark hx-wordmark-subtle text-[10px] font-extrabold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.2)]">
             HEXAVANTE
           </p>
         </div>
