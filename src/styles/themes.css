@@ -33,6 +33,14 @@
   --border: rgba(0, 0, 0, 0.08);
   --surface: rgba(255, 255, 255, 0.95);
   --surface-strong: #ffffff;
+  /* Sidebar vars alimentam ~134 usos de texto (h1, nav, cards).
+     Sem isto o texto fica quase branco sobre fundo branco. */
+  --sidebar-background: 210 40% 98%;
+  --sidebar-foreground: 215 28% 17%;
+  --sidebar-accent: 214 32% 91%;
+  --sidebar-accent-foreground: 215 28% 17%;
+  --sidebar-border: 214 30% 89%;
+  --sidebar-highlight: 199 85% 34%;
 }
 
 [data-theme-mode="light"] .hx-panel {
