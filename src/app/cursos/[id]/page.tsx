@@ -40,7 +40,7 @@ export default async function CourseDetailPage({ params }: Props) {
                 <img src={course.thumbnailUrl} alt={course.title} className="aspect-video w-full object-cover" />
               ) : (
                 <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-cyan-500/15 to-violet-500/15">
-                  <BookOpen className="h-16 w-16 text-white/20" />
+                  <BookOpen className="h-16 w-16 text-white/40" />
                 </div>
               )}
 
@@ -86,7 +86,7 @@ export default async function CourseDetailPage({ params }: Props) {
                           <p className="text-sm font-bold text-[hsl(var(--sidebar-foreground))]">
                             {m.orderNumber}. {m.title}
                           </p>
-                          <p className="mt-1 text-xs text-[hsl(var(--sidebar-foreground)/0.4)]">
+                          <p className="mt-1 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                             {m.lessons.length} aulas
                           </p>
                         </li>

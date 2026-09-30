@@ -132,12 +132,12 @@ export function TeamDice() {
           <p className="mx-auto mt-2 max-w-sm text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
             {member.role}
           </p>
-          <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.3)]">
+          <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.5)]">
             Membro {(index ?? 0) + 1} de {TEAM.length} · {rolls} {rolls === 1 ? "rolagem" : "rolagens"}
           </p>
         </div>
       ) : (
-        <p className="mt-8 text-sm text-[hsl(var(--sidebar-foreground)/0.45)]">
+        <p className="mt-8 text-sm text-[hsl(var(--sidebar-foreground)/0.5)]">
           Clique no dado para conhecer quem está por trás do Hexavante.
         </p>
       )}

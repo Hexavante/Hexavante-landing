@@ -41,7 +41,14 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
 
   if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
     return (
-      <video src={url} controls preload="metadata" className="aspect-video w-full bg-black">
+      <video
+        src={url}
+        controls
+        preload="metadata"
+        /* text-[#fff] (e não text-white): o fallback é texto branco sobre o
+         * preto do player, e o remap claro de text-white o escureceria. */
+        className="aspect-video w-full bg-black text-[#fff]"
+      >
         Seu navegador não suporta vídeo.
       </video>
     );

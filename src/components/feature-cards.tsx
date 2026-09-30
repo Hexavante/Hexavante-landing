@@ -52,7 +52,7 @@ const features: Feature[] = [
         <div className="rounded-lg bg-white/[0.08] p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[10px] font-bold text-rose-300 uppercase tracking-wider">Questão 12/30</span>
-            <span className="text-[10px] text-white/40">02:34</span>
+            <span className="text-[10px] text-white/50">02:34</span>
           </div>
           <div className="h-2 w-full rounded bg-white/15 mb-2" />
           <div className="grid grid-cols-2 gap-2">
@@ -89,7 +89,7 @@ const features: Feature[] = [
             <div className="text-xs font-medium text-white/70">Maria S.</div>
             <div className="mt-1 h-1.5 w-full rounded-full bg-white/10"><div className="h-full w-[65%] rounded-full bg-white/20" /></div>
           </div>
-          <span className="text-xs text-white/40">2.100 XP</span>
+          <span className="text-xs text-white/50">2.100 XP</span>
         </div>
       </div>
     ),
@@ -110,7 +110,7 @@ const features: Feature[] = [
               <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-emerald-400/40 to-emerald-400/10" style={{ height: `${h}%` }} />
             ))}
           </div>
-          <div className="mt-2 flex justify-between text-[9px] text-white/30">
+          <div className="mt-2 flex justify-between text-[9px] text-white/50">
             <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span>
           </div>
         </div>

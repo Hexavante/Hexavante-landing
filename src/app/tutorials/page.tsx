@@ -84,7 +84,7 @@ export default async function TutorialsPage({ searchParams }: Props) {
 
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <p className="mb-8 text-sm text-[hsl(var(--sidebar-foreground)/0.45)]">
+            <p className="mb-8 text-sm text-[hsl(var(--sidebar-foreground)/0.5)]">
               <span className="font-semibold text-[hsl(var(--sidebar-foreground))]">{res.pagination.total}</span>{" "}
               tutoriais encontrados
             </p>
@@ -111,7 +111,7 @@ export default async function TutorialsPage({ searchParams }: Props) {
                     ← Anterior
                   </a>
                 )}
-                <span className="text-sm text-[hsl(var(--sidebar-foreground)/0.45)]">
+                <span className="text-sm text-[hsl(var(--sidebar-foreground)/0.5)]">
                   Página {page} de {res.pagination.totalPages}
                 </span>
                 {page < res.pagination.totalPages && (

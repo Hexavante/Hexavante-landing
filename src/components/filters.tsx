@@ -12,7 +12,7 @@ export function FilterBar({ children }: { children: React.ReactNode }) {
 export function SearchField({ name, defaultValue, placeholder }: { name: string; defaultValue?: string; placeholder: string }) {
   return (
     <div className="min-w-[200px] flex-1">
-      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
         Buscar
       </label>
       <input name={name} defaultValue={defaultValue ?? ""} placeholder={placeholder} className="hx-input" />
@@ -33,7 +33,7 @@ export function SelectField({
 }) {
   return (
     <div className="w-full sm:w-48">
-      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
         {label}
       </label>
       <select name={name} defaultValue={defaultValue ?? ""} className="hx-input">

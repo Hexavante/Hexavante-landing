@@ -40,7 +40,7 @@ export default async function ExamDetailPage({ params }: Props) {
                 <img src={exam.coverImage} alt={exam.title} className="aspect-video w-full object-cover" />
               ) : (
                 <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-rose-500/15 to-amber-500/15">
-                  <Target className="h-16 w-16 text-white/20" />
+                  <Target className="h-16 w-16 text-white/40" />
                 </div>
               )}
 
@@ -48,7 +48,7 @@ export default async function ExamDetailPage({ params }: Props) {
                 <div className="flex flex-wrap gap-2">
                   <span className="hx-chip !text-xs">{EXAM_TYPE_LABELS[exam.examType] ?? exam.examType}</span>
                   {exam.isPremiumOnly && (
-                    <span className="hx-chip !border-amber-400/30 !bg-amber-400/10 !text-xs !text-amber-300">
+                    <span className="hx-chip !border-amber-400/30 !bg-amber-400/10 !text-xs text-amber-300">
                       <Crown className="h-3 w-3" /> Premium
                     </span>
                   )}

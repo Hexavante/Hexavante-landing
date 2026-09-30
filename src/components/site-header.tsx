@@ -174,7 +174,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                             <div className="min-w-0">
                               <div className="text-sm font-semibold text-[hsl(var(--sidebar-foreground))]">
                                 {item.label}
-                                {external && <span className="ml-1.5 text-[10px] text-[hsl(var(--sidebar-foreground)/0.35)]">app ↗</span>}
+                                {external && <span className="ml-1.5 text-[10px] text-[hsl(var(--sidebar-foreground)/0.5)]">app ↗</span>}
                               </div>
                               <div className="mt-0.5 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                                 {item.description}
@@ -276,7 +276,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
               const cat = megaMenus[key];
               return (
                 <div key={key}>
-                  <div className="mb-1 px-1 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.35)]">
+                  <div className="mb-1 px-1 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.5)]">
                     {cat.title}
                   </div>
                   {cat.items.map((item) => {

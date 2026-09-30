@@ -94,7 +94,7 @@ export default async function CompetirPage() {
                     className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 transition hover:border-amber-400/25"
                     style={{ animationDelay: `${Math.min(i * 70, 400)}ms` }}
                   >
-                    <span className={cn("w-8 text-center text-sm font-black", RANK_COLORS[i] ?? "text-white/40")}>
+                    <span className={cn("w-8 text-center text-sm font-black", RANK_COLORS[i] ?? "text-white/50")}>
                       #{r.rank}
                     </span>
                     {r.avatarUrl ? (
@@ -108,7 +108,7 @@ export default async function CompetirPage() {
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-bold text-white">
                         {r.fullName}
-                        <span className="ml-2 text-[10px] font-semibold text-white/35">Nv. {r.level}</span>
+                        <span className="ml-2 text-[10px] font-semibold text-white/50">Nv. {r.level}</span>
                       </p>
                       <div className="mt-1.5 h-1.5 w-full rounded-full bg-white/10">
                         <div
@@ -165,7 +165,7 @@ export default async function CompetirPage() {
                     <p className="mt-4 text-3xl font-black text-white">
                       {p.coins.toLocaleString("pt-BR")}
                     </p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-400">
                       moedas{p.bonus > 0 && <span className="font-bold text-emerald-300"> +{p.bonus} bônus</span>}
                     </p>
                     <p className="mt-4 text-xl font-black text-cyan-300">{p.price}</p>
@@ -272,7 +272,7 @@ export default async function CompetirPage() {
                     </span>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-bold text-white">{a.name}</p>
-                      <p className="mt-0.5 line-clamp-2 text-xs text-white/45">{a.description}</p>
+                      <p className="mt-0.5 line-clamp-2 text-xs text-white/50">{a.description}</p>
                     </div>
                   </div>
                 ))}

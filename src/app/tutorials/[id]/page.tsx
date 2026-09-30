@@ -70,7 +70,7 @@ export default async function TutorialDetailPage({ params }: Props) {
                 {tutorial.tags.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {tutorial.tags.map((t) => (
-                      <span key={t} className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-[hsl(var(--sidebar-foreground)/0.45)]">
+                      <span key={t} className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                         {t}
                       </span>
                     ))}

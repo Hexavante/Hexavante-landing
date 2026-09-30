@@ -55,10 +55,11 @@ Navegador ──HTTPS──▶ Nginx ──▶ hexavante-landing:3001 ──fetc
 ```
 src/
 ├── app/                  # / (vitrine), /cursos, /tutorials, /simulados (+/[id]),
-│                         # /competir, /plataforma, /sobre (time + dado 3D)
+│                         # /competir, /plataforma, /sobre (time + dado 3D),
+│                         # /blog, /carreiras, /termos, /privacidade
 ├── components/           # site-header (mega-menu), site-footer, cards, filters,
 │                         # badge, feature-cards, floating-decor, scroll-reveal,
-│                         # background-music, video-embed, team-dice, faq-accordion...
+│                         # video-embed, team-dice, faq-accordion...
 ├── lib/api.ts            # Tipos + fetchers (revalidação 60s)
 └── styles/               # themes, components, animations (design próprio)
 public/brand/             # logo + mascote
@@ -74,6 +75,9 @@ public/brand/             # logo + mascote
 | `/competir` | Ranking real, loja de moedas, sala em destaque, conquistas |
 | `/plataforma` | Estatísticas, Hexa, ajuda (sanfona), sobre |
 | `/sobre` | Time do TCC + dado 3D interativo |
+| `/blog` | Novidades (artigos em preparação) + canais oficiais |
+| `/carreiras` | Vagas, áreas, candidatura de instrutor (só redes, sem e-mail) |
+| `/termos`, `/privacidade` | Páginas jurídicas estáticas (`force-static`) |
 
 Login é detectado via cookie compartilhado `.hexavante.com.br` encaminhado à API. Deslogado sempre vê CTA — nunca quebra.
 
@@ -104,7 +108,7 @@ npm run dev            # http://localhost:3001
 
 ### Design
 
-Fonte Space Grotesk global; header com mega-menu, `FloatingDecor`, `ScrollReveal`, `BackgroundMusic`, chips `hx-intro-chip`, acento `hx-accent-text`. Vídeos: YouTube/Vimeo/mp4 embedados, resto abre no provedor.
+Fonte Space Grotesk global; header com mega-menu, `FloatingDecor`, `ScrollReveal`, chips `hx-intro-chip`, acento `hx-accent-text`. Vídeos: YouTube/Vimeo/mp4 embedados, resto abre no provedor.
 
 ### Deploy
 

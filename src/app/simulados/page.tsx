@@ -56,7 +56,7 @@ export default async function ExamsPage({ searchParams }: Props) {
             <FilterBar>
               <SearchField name="q" defaultValue={params.q} placeholder="Buscar simulados..." />
               <div className="w-full sm:w-48">
-                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
                   Ordenar
                 </label>
                 <select name="sort" defaultValue={params.sort ?? "recent"} className="hx-input">
@@ -83,7 +83,7 @@ export default async function ExamsPage({ searchParams }: Props) {
 
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <p className="mb-8 text-sm text-[hsl(var(--sidebar-foreground)/0.45)]">
+            <p className="mb-8 text-sm text-[hsl(var(--sidebar-foreground)/0.5)]">
               <span className="font-semibold text-[hsl(var(--sidebar-foreground))]">{exams.length}</span>{" "}
               simulados encontrados
             </p>

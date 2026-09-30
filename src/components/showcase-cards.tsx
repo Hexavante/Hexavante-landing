@@ -45,7 +45,7 @@ function CardHead({
           <h3 className="text-base font-bold text-[hsl(var(--sidebar-foreground))] group-hover:hx-accent-text">
             {title}
           </h3>
-          <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-semibold text-[hsl(var(--sidebar-foreground)/0.45)]">
+          <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-semibold text-[hsl(var(--sidebar-foreground)/0.5)]">
             <Lock className="h-2.5 w-2.5" /> no app
           </span>
         </div>
@@ -74,9 +74,9 @@ export function CompeteCards() {
             { pos: "#3", name: "João P.", xp: "1.980 XP", hot: false },
           ].map((r) => (
             <div key={r.pos} className={`flex items-center gap-3 rounded-lg p-2.5 ${r.hot ? "bg-amber-400/10" : "bg-white/[0.03]"}`}>
-              <span className={`text-xs font-black ${r.hot ? "text-amber-300" : "text-white/40"}`}>{r.pos}</span>
+              <span className={`text-xs font-black ${r.hot ? "text-amber-300" : "text-white/50"}`}>{r.pos}</span>
               <span className={`flex-1 text-xs font-semibold ${r.hot ? "text-white" : "text-white/60"}`}>{r.name}</span>
-              <span className={`text-xs font-bold ${r.hot ? "text-amber-300" : "text-white/35"}`}>{r.xp}</span>
+              <span className={`text-xs font-bold ${r.hot ? "text-amber-300" : "text-white/50"}`}>{r.xp}</span>
             </div>
           ))}
         </div>
@@ -124,7 +124,7 @@ export function CompeteCards() {
           description="Desbloqueie emblemas e recompensas."
         />
         <div className="mt-5 flex gap-2">
-          {["bg-amber-400/25 text-amber-300", "bg-white/[0.05] text-white/30", "bg-white/[0.05] text-white/30", "bg-cyan-400/20 text-cyan-300"].map((c, i) => (
+          {["bg-amber-400/25 text-amber-300", "bg-white/[0.05] text-white/50", "bg-white/[0.05] text-white/50", "bg-cyan-400/20 text-cyan-300"].map((c, i) => (
             <div key={i} className={`grid h-12 w-12 place-items-center rounded-full ${c}`}>
               <Crown className="h-5 w-5" />
             </div>
@@ -204,7 +204,7 @@ export function PlatformCards() {
               {l}
             </span>
           ))}
-          <span className="ml-1 text-xs text-white/40">+ você</span>
+          <span className="ml-1 text-xs text-white/50">+ você</span>
         </div>
       </CardShell>
     </div>

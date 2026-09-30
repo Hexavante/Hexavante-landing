@@ -40,7 +40,9 @@
   --sidebar-accent: 214 32% 91%;
   --sidebar-accent-foreground: 215 28% 17%;
   --sidebar-border: 214 30% 89%;
-  --sidebar-highlight: 199 85% 34%;
+  /* 34% deixava .hx-intro-chip (4.2:1) e .hx-accent-text (4.35:1) reprovados
+   * sobre os fundos claros; 28% empurra ambos para >=5.6:1 em todos. */
+  --sidebar-highlight: 199 85% 28%;
 }
 
 [data-theme-mode="light"] .hx-panel {
@@ -102,7 +104,9 @@
 
 [data-theme-mode="light"] .hx-filter-pill-active {
   background: var(--primary);
-  color: #ffffff;
+  /* branco reprovava nos primários claros (daylight 3.74:1, cream 3.19:1);
+   * --primary-fg é a cor que passa ≥4.5:1 em cada tema. */
+  color: var(--primary-fg, #ffffff);
   border-color: transparent;
 }
 
@@ -164,9 +168,15 @@
   text-shadow: 0 0 18px rgba(193, 18, 31, 0.35);
 }
 
+/* wordmark minúsculo do rodapé: cor via classe (sem utilitário de alpha no
+   markup, para não colidir com o piso de legibilidade do modo claro) */
+.hx-wordmark-subtle {
+  color: hsl(var(--sidebar-foreground) / 0.5);
+}
+
 /* wordmark minúsculo do rodapé: vermelho sóbrio, sem brilho */
 [data-theme-mode="light"] .hx-wordmark-subtle {
-  color: rgba(193, 18, 31, 0.55);
+  color: #9a1017;
   text-shadow: none;
 }
 
@@ -310,6 +320,91 @@ body.fx-aurora-bg::after {
 }
 
 /* ------------------------------------------------------------------
+ * Modo claro: piso de legibilidade dos textos com alpha no foreground.
+ * No escuro (fg 210 20% 96% sobre #06080f) 0.48 já passa 4.5:1; no claro
+ * (fg 215 28% 17% sobre #fff) o mesmo tier dá 2.9:1. Pior cenário medido
+ * em runtime: bg com L=0.79 (tint esverdeado) → 0.70 dá 4.89:1. Cada alpha
+ * abaixo do piso é elevado, preservando a hierarquia (0.70 < 0.72 < 0.82).
+ * Regras em ordem crescente porque o seletor é por substring ("/0.4"
+ * casa "/0.45"): a regra mais específica em ordem vence. Sem :not(:hover)
+ * de propósito: com o mouse em cima, a regra precisa continuar valendo (o
+ * utilitário cru reverteria para alpha ilegível); as variantes hover:text-*
+ * têm regras próprias no fim do arquivo.
+ * ------------------------------------------------------------------ */
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.2"] {
+  color: hsl(var(--sidebar-foreground) / 0.7);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.3"] {
+  color: hsl(var(--sidebar-foreground) / 0.7);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.35"] {
+  color: hsl(var(--sidebar-foreground) / 0.7);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.36"] {
+  color: hsl(var(--sidebar-foreground) / 0.7);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.4"] {
+  color: hsl(var(--sidebar-foreground) / 0.72);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.42"] {
+  color: hsl(var(--sidebar-foreground) / 0.73);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.45"] {
+  color: hsl(var(--sidebar-foreground) / 0.74);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.48"] {
+  color: hsl(var(--sidebar-foreground) / 0.75);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.5"] {
+  color: hsl(var(--sidebar-foreground) / 0.76);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.55"] {
+  color: hsl(var(--sidebar-foreground) / 0.78);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.56"] {
+  color: hsl(var(--sidebar-foreground) / 0.8);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.6"] {
+  color: hsl(var(--sidebar-foreground) / 0.82);
+}
+/* guards contra os prefixos "/0.6" acima — ordem importa */
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.65"] {
+  color: hsl(var(--sidebar-foreground) / 0.85);
+}
+[data-theme-mode="light"] [class*="--sidebar-foreground)/0.66"] {
+  color: hsl(var(--sidebar-foreground) / 0.86);
+}
+/* tiers >= 0.7 (0.7 → 4.89:1, 0.72 → 5.20:1, 0.78 → 6.17:1) passam sozinhos */
+
+/* ------------------------------------------------------------------
+ * Classes .hx-* que embutem o alpha no próprio CSS (não existe utilitário
+ * com o alpha no markup, então o bloco acima não as alcança).
+ * ------------------------------------------------------------------ */
+[data-theme-mode="light"] .hx-text-muted {
+  color: hsl(var(--sidebar-foreground) / 0.82);
+}
+[data-theme-mode="light"] .hx-text-subtle {
+  color: hsl(var(--sidebar-foreground) / 0.75);
+}
+[data-theme-mode="light"] .hx-link-muted {
+  color: hsl(var(--sidebar-foreground) / 0.78);
+}
+[data-theme-mode="light"] .hx-segment-link,
+[data-theme-mode="light"] .hx-segment-link-inactive,
+[data-theme-mode="light"] .hx-tab-inactive {
+  color: hsl(var(--sidebar-foreground) / 0.82);
+}
+[data-theme-mode="light"] .hx-header-xp-meta {
+  color: hsl(var(--sidebar-foreground) / 0.78);
+}
+[data-theme-mode="light"] .hx-sidebar-group-label {
+  color: hsl(var(--sidebar-foreground) / 0.74);
+}
+[data-theme-mode="light"] .hx-sidebar-link-icon {
+  color: hsl(var(--sidebar-foreground) / 0.85);
+}
+
+/* ------------------------------------------------------------------
  * Modo claro: remapeia utilitários hardcoded para dark (o design foi
  * feito dark-first). Seletores por substring cobrem as variantes com
  * opacidade (ex: text-white/60). Botões .hx-* usam classes próprias e
@@ -327,4 +422,83 @@ body.fx-aurora-bg::after {
 }
 [data-theme-mode="light"] [class*="border-white/"] {
   border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* ------------------------------------------------------------------
+ * Modo claro: texto colorido do Tailwind (tiers 300/400/600) foi escolhido
+ * para fundo escuro e reprova sobre branco/tints (amber-300 = 1.7:1).
+ * Remapeia para a sombra escura da mesma matiz, validada >=4.6:1 no pior
+ * bg claro medido em runtime (L=0.79) — ex: amber-300/400/600 → #92400e
+ * (5.68:1 no pior cenário), enquanto a sombra 700 do app (#b45309) daria
+ * 4.01:1 e reprovaria nos tints.  preserva hover:text-*.
+ * ------------------------------------------------------------------ */
+[data-theme-mode="light"] [class*="text-amber-300"],
+[data-theme-mode="light"] [class*="text-amber-400"],
+[data-theme-mode="light"] [class*="text-amber-600"] {
+  color: #92400e !important;
+}
+[data-theme-mode="light"] [class*="text-cyan-300"],
+[data-theme-mode="light"] [class*="text-cyan-400"] {
+  color: #155e75 !important;
+}
+[data-theme-mode="light"] [class*="text-emerald-300"],
+[data-theme-mode="light"] [class*="text-emerald-400"] {
+  color: #065f46 !important;
+}
+[data-theme-mode="light"] [class*="text-rose-300"],
+[data-theme-mode="light"] [class*="text-rose-400"] {
+  color: #be123c !important;
+}
+[data-theme-mode="light"] [class*="text-sky-300"],
+[data-theme-mode="light"] [class*="text-sky-400"] {
+  color: #0369a1 !important;
+}
+[data-theme-mode="light"] [class*="text-violet-300"],
+[data-theme-mode="light"] [class*="text-violet-400"] {
+  color: #6d28d9 !important;
+}
+[data-theme-mode="light"] [class*="text-teal-300"],
+[data-theme-mode="light"] [class*="text-teal-400"] {
+  color: #115e59 !important;
+}
+[data-theme-mode="light"] [class*="text-pink-300"],
+[data-theme-mode="light"] [class*="text-pink-400"] {
+  color: #be185d !important;
+}
+[data-theme-mode="light"] [class*="text-yellow-300"],
+[data-theme-mode="light"] [class*="text-yellow-400"] {
+  color: #854d0e !important;
+}
+[data-theme-mode="light"] [class*="text-red-400"] {
+  color: #b91c1c !important;
+}
+[data-theme-mode="light"] [class*="text-blue-400"] {
+  color: #1d4ed8 !important;
+}
+/* slate-300/400 já remapados acima; slate-500 passa no branco (4.76:1) mas
+ * reprova em card/tint (3.91:1) → sobe para o 600 (>=6.07:1 em tudo). */
+[data-theme-mode="light"] [class*="text-slate-500"] {
+  color: #475569 !important;
+}
+
+/* ------------------------------------------------------------------
+ * Modo claro: variantes hover:* dos utilitários de cor.
+ * As regras base acima são SEM :not(:hover) (o tom cru não pode voltar no
+ * hover), então sem isto o hover não teria efeito. Vêm depois, com
+ * especificidade maior ((0,3,0) vs (0,2,0)) e !important — necessário
+ * porque as regras base de cor também são !important. Os tons de hover são
+ * um degrau mais escuros que a base, preservando o affordance e ≥4.6:1 no
+ * pior bg claro (L=0.79).
+ * ------------------------------------------------------------------ */
+[data-theme-mode="light"] [class*="hover:text-[hsl(var(--sidebar-foreground))]"]:hover {
+  color: hsl(var(--sidebar-foreground)) !important;
+}
+[data-theme-mode="light"] [class*="hover:text-[hsl(var(--sidebar-highlight))]"]:hover {
+  color: hsl(var(--sidebar-highlight)) !important;
+}
+[data-theme-mode="light"] [class*="hover:text-amber-300"]:hover {
+  color: #78350f !important;
+}
+[data-theme-mode="light"] [class*="hover:text-cyan-300"]:hover {
+  color: #164e63 !important;
 }

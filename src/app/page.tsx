@@ -285,11 +285,11 @@ export default async function HomePage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-bold text-[hsl(var(--sidebar-foreground))]">{cert.course.title}</p>
-                        <p className="text-xs text-[hsl(var(--sidebar-foreground)/0.4)]">
+                        <p className="text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                           {cert.course.categoryName} · {new Date(cert.issuedAt).toLocaleDateString("pt-BR")}
                         </p>
                       </div>
-                      <Download className="h-4 w-4 shrink-0 text-[hsl(var(--sidebar-foreground)/0.4)]" />
+                      <Download className="h-4 w-4 shrink-0 text-[hsl(var(--sidebar-foreground)/0.5)]" />
                     </div>
                   ))}
                 </div>
@@ -346,7 +346,7 @@ export default async function HomePage() {
                   Ver cursos
                 </Link>
               </div>
-              <p className="mt-8 flex items-center justify-center gap-4 text-xs text-[hsl(var(--sidebar-foreground)/0.35)]">
+              <p className="mt-8 flex items-center justify-center gap-4 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                 <span className="flex items-center gap-1"><Play className="h-3 w-3" /> Videoaulas</span>
                 <span className="flex items-center gap-1"><Users className="h-3 w-3" /> Comunidade</span>
                 <span className="flex items-center gap-1"><BookOpen className="h-3 w-3" /> Certificados</span>

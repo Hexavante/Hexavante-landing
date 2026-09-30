@@ -93,7 +93,7 @@ export default function PrivacidadePage() {
                   Como coletamos, usamos e protegemos seus dados na plataforma
                   educacional Hexavante, em conformidade com a LGPD.
                 </p>
-                <p className="mt-4 text-xs text-[hsl(var(--sidebar-foreground)/0.45)]">
+                <p className="mt-4 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                   Vigência a partir de 21/09/2026.
                 </p>
               </div>

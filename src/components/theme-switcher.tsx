@@ -66,7 +66,7 @@ export function ThemeSwitcher() {
             aria-hidden="true"
           />
           <div className="absolute right-0 top-full z-50 mt-2 max-h-80 w-56 overflow-y-auto rounded-xl border border-white/[0.08] bg-[hsl(var(--sidebar-background))] p-1.5 shadow-2xl shadow-black/50">
-            <p className="px-2.5 pb-1 pt-1.5 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.35)]">
+            <p className="px-2.5 pb-1 pt-1.5 text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--sidebar-foreground)/0.5)]">
               Tema
             </p>
             {LANDING_THEMES.map((theme) => {

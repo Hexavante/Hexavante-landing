@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { BackgroundMusic } from "@/components/background-music";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={grotesk.variable}>
       <body className="app-shell overflow-x-hidden antialiased">
         {children}
-        <BackgroundMusic />
       </body>
     </html>
   );
