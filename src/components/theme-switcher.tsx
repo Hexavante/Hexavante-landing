@@ -1,28 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Palette } from "lucide-react";
-import {
-  LANDING_THEMES,
-  THEME_STORAGE_KEY,
-  applyLandingTheme,
-  getLandingTheme,
-} from "@/lib/themes";
+import { Check, Lock, Palette } from "lucide-react";
+import Link from "next/link";
+import { LANDING_THEMES } from "@/lib/themes";
+import { useLandingTheme } from "@/components/theme-provider";
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
 
 export function ThemeSwitcher() {
   const [open, setOpen] = useState(false);
-  const [activeId, setActiveId] = useState("default");
-
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
-      const theme = getLandingTheme(saved);
-      applyLandingTheme(theme);
-      setActiveId(theme.id);
-    } catch {
-      // storage indisponível: mantém o tema padrão
-    }
-  }, []);
+  const [pendingId, setPendingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const { authenticated, ownedThemeIds, equippedThemeId, equipTheme } = useLandingTheme();
 
   useEffect(() => {
     if (!open) return;
@@ -31,16 +21,17 @@ export function ThemeSwitcher() {
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open ]);
+  }, [open]);
 
-  function choose(id: string) {
-    const theme = getLandingTheme(id);
-    applyLandingTheme(theme);
-    setActiveId(theme.id);
-    try {
-      window.localStorage.setItem(THEME_STORAGE_KEY, theme.id);
-    } catch {
-      // storage indisponível: tema segue aplicado só na sessão
+  async function choose(id: string) {
+    if (!ownedThemeIds.includes(id) || pendingId) return;
+    setPendingId(id);
+    setError(null);
+    const message = await equipTheme(id);
+    setPendingId(null);
+    if (message) {
+      setError(message);
+      return;
     }
     setOpen(false);
   }
@@ -70,17 +61,22 @@ export function ThemeSwitcher() {
               Tema
             </p>
             {LANDING_THEMES.map((theme) => {
-              const isActive = theme.id === activeId;
-              return (
-                <button
+                  const isActive = theme.id === equippedThemeId;
+                  const isOwned = ownedThemeIds.includes(theme.id);
+                  return (
+                    <button
                   key={theme.id}
                   type="button"
-                  onClick={() => choose(theme.id)}
-                  className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition hover:bg-white/[0.06] ${
-                    isActive
-                      ? "text-[hsl(var(--sidebar-foreground))]"
-                      : "text-[hsl(var(--sidebar-foreground)/0.78)]"
-                  }`}
+                      onClick={() => void choose(theme.id)}
+                      disabled={!isOwned || pendingId !== null}
+                      aria-pressed={isActive}
+                      className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition ${
+                        isActive
+                          ? "text-[hsl(var(--sidebar-foreground))]"
+                          : isOwned
+                            ? "text-[hsl(var(--sidebar-foreground)/0.78)] hover:bg-white/[0.06]"
+                            : "cursor-not-allowed text-[hsl(var(--sidebar-foreground)/0.38)]"
+                      }`}
                 >
                   <span
                     aria-hidden="true"
@@ -90,10 +86,22 @@ export function ThemeSwitcher() {
                   <span className="min-w-0 flex-1 truncate font-medium">
                     {theme.label}
                   </span>
-                  {isActive && <Check className="h-4 w-4 shrink-0" />}
+                  {pendingId === theme.id ? (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent" aria-label="Equipando" />
+                  ) : isActive ? (
+                    <Check className="h-4 w-4 shrink-0" />
+                  ) : !isOwned ? (
+                    <Lock className="h-3.5 w-3.5 shrink-0" aria-label="Tema não adquirido" />
+                  ) : null}
                 </button>
               );
             })}
+            {error && <p role="alert" className="px-2.5 py-2 text-xs text-rose-400">{error}</p>}
+            {!authenticated && (
+              <Link href={APP_URL} className="mt-1 block rounded-lg border-t border-white/[0.08] px-2.5 py-2.5 text-xs font-semibold text-[hsl(var(--sidebar-highlight))] hover:bg-white/[0.04]">
+                Entre no app para liberar temas
+              </Link>
+            )}
           </div>
         </>
       )}

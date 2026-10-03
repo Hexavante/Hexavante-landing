@@ -110,3 +110,8 @@ a.hx-pill:hover {
 select.hx-input option {
   background: #0b1224;
 }
+
+[data-theme-mode="light"] select.hx-input option {
+  background: #ffffff;
+  color: #0f172a;
+}

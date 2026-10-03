@@ -5,8 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { getSession } from "@/lib/api";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Carreiras | Hexavante",
@@ -52,10 +53,15 @@ const areas = [
   },
 ];
 
-export default function CarreirasPage() {
+export default async function CarreirasPage() {
+  const session = await getSession();
+  const user = session
+    ? { name: session.name, username: session.username, avatarUrl: session.avatarUrl }
+    : null;
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-[var(--background)]">
-      <SiteHeader user={null} />
+      <SiteHeader user={user} />
       <main>
         <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 sm:pt-40">
           <FloatingDecor />

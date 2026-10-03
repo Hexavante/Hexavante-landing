@@ -11,8 +11,10 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { CourseCard, EmptyState, TutorialCard } from "@/components/cards";
+import { getCourses, getSession, getTutorials } from "@/lib/api";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog | Hexavante",
@@ -53,10 +55,19 @@ const channels = [
   },
 ];
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const [session, courses, tutorials] = await Promise.all([
+    getSession(),
+    getCourses({ limit: 3 }),
+    getTutorials({ limit: 3 }),
+  ]);
+  const user = session
+    ? { name: session.name, username: session.username, avatarUrl: session.avatarUrl }
+    : null;
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-[var(--background)]">
-      <SiteHeader user={null} />
+      <SiteHeader user={user} />
       <main>
         <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 sm:pt-40">
           <FloatingDecor />
@@ -71,12 +82,10 @@ export default function BlogPage() {
                   Novidades do <span className="hx-accent-text">Hexavante</span>
                 </h1>
                 <p className="mt-5 text-base leading-relaxed text-[hsl(var(--sidebar-foreground)/0.56)] sm:text-lg">
-                  Dicas de estudo, bastidores de construção da plataforma e
-                  lançamentos dos cursos e simulados.
+                  Novidades da plataforma e conteúdos para seguir aprendendo.
                 </p>
                 <p className="mt-4 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
-                  Estamos preparando os primeiros artigos. Enquanto isso, o
-                  conteúdo já está nos canais abaixo.
+                  Explore os cursos e tutoriais publicados recentemente.
                 </p>
               </div>
             </ScrollReveal>
@@ -85,14 +94,67 @@ export default function BlogPage() {
 
         <section className="border-t border-white/[0.06] py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <ScrollReveal>
-              <div className="hx-panel mb-10 rounded-2xl p-6 text-center">
-                <p className="text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
-                  O blog ainda não publicou artigos — as postagens serão
-                  listadas aqui assim que chegarem.
-                </p>
+            <section aria-labelledby="recent-courses-title" className="mb-14">
+              <div className="mb-6 flex items-end justify-between gap-4">
+                <div>
+                  <h2
+                    id="recent-courses-title"
+                    className="text-2xl font-black text-[hsl(var(--sidebar-foreground))]"
+                  >
+                    Cursos recentes
+                  </h2>
+                  <p className="mt-1 text-sm text-[hsl(var(--sidebar-foreground)/0.55)]">
+                    Trilhas e aulas disponíveis na plataforma.
+                  </p>
+                </div>
+                <Link
+                  href="/cursos"
+                  className="hidden items-center gap-1 text-sm font-semibold text-[hsl(var(--sidebar-highlight))] sm:inline-flex"
+                >
+                  Todos os cursos <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-            </ScrollReveal>
+              {courses.data.length ? (
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {courses.data.map((course) => (
+                    <CourseCard key={course.id} course={course} />
+                  ))}
+                </div>
+              ) : (
+                <EmptyState message="Nenhum curso publicado no momento." />
+              )}
+            </section>
+
+            <section aria-labelledby="recent-tutorials-title" className="mb-14">
+              <div className="mb-6 flex items-end justify-between gap-4">
+                <div>
+                  <h2
+                    id="recent-tutorials-title"
+                    className="text-2xl font-black text-[hsl(var(--sidebar-foreground))]"
+                  >
+                    Tutoriais recentes
+                  </h2>
+                  <p className="mt-1 text-sm text-[hsl(var(--sidebar-foreground)/0.55)]">
+                    Guias práticos publicados pela comunidade.
+                  </p>
+                </div>
+                <Link
+                  href="/tutorials"
+                  className="hidden items-center gap-1 text-sm font-semibold text-[hsl(var(--sidebar-highlight))] sm:inline-flex"
+                >
+                  Todos os tutoriais <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              {tutorials.data.length ? (
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {tutorials.data.map((tutorial) => (
+                    <TutorialCard key={tutorial.id} tutorial={tutorial} />
+                  ))}
+                </div>
+              ) : (
+                <EmptyState message="Nenhum tutorial publicado no momento." />
+              )}
+            </section>
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {channels.map((channel, i) => (

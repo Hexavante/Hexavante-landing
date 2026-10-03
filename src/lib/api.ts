@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { DEFAULT_ACCOUNT_THEME_STATE, LANDING_THEMES, type AccountThemeState } from "@/lib/themes";
 
 export const API_BASE =
   process.env.API_URL ||
@@ -244,6 +245,66 @@ export async function getSession(): Promise<SessionUser | null> {
     return data.user ?? null;
   } catch {
     return null;
+  }
+}
+
+/** Lê os temas do inventário autenticado; a API é a fonte de propriedade e equipamento. */
+export async function getAccountThemeState(): Promise<AccountThemeState> {
+  const fallback = DEFAULT_ACCOUNT_THEME_STATE;
+
+  try {
+    const cookie = (await headers()).get("cookie");
+    if (!cookie) return fallback;
+    const response = await fetch(`${API_BASE}/api/v1/inventory`, {
+      headers: { cookie },
+      cache: "no-store",
+    });
+    if (!response.ok) return fallback;
+
+    const data = (await response.json()) as {
+      items?: Array<{
+        id: string;
+        isEquipped: boolean;
+        expiresAt: string | null;
+        item: { category: string; slug: string; metadata?: unknown };
+      }>;
+    };
+    const themes = (data.items ?? []).filter(
+      (entry) => entry.item.category === "THEME" && (!entry.expiresAt || Date.parse(entry.expiresAt) > Date.now()),
+    );
+    const supportedIds = new Set(LANDING_THEMES.map((theme) => theme.id));
+    const ids = themes
+      .map((entry) => {
+        const metadata = entry.item.metadata as { themeId?: unknown } | null;
+        return typeof metadata?.themeId === "string"
+          ? metadata.themeId
+          : entry.item.slug === "theme-hexavante"
+            ? "default"
+            : entry.item.slug.startsWith("theme-")
+              ? entry.item.slug.slice("theme-".length)
+              : null;
+      })
+      .filter((id): id is string => typeof id === "string" && supportedIds.has(id));
+
+    return {
+      authenticated: true,
+      ownedThemeIds: Array.from(new Set(["default", ...ids])),
+      equippedThemeId:
+        themes.find((entry) => entry.isEquipped)
+          ? (() => {
+              const active = themes.find((entry) => entry.isEquipped)!;
+              const metadata = active.item.metadata as { themeId?: unknown } | null;
+              const id = typeof metadata?.themeId === "string"
+                ? metadata.themeId
+                : active.item.slug === "theme-hexavante"
+                  ? "default"
+                  : active.item.slug.slice("theme-".length);
+              return supportedIds.has(id) ? id : "default";
+            })()
+          : "default",
+    };
+  } catch {
+    return fallback;
   }
 }
 

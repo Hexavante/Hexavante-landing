@@ -9,27 +9,22 @@ import {
   getAchievements,
   getLeaderboard,
   getLiveRooms,
+  getPaymentCatalog,
   getSession,
 } from "@/lib/api";
 import { cn } from "@/lib/cn";
 
 export const dynamic = "force-dynamic";
 
-const COIN_PACKS = [
-  { coins: 100, bonus: 0, price: "R$ 4,90", tag: null as string | null },
-  { coins: 550, bonus: 50, price: "R$ 19,90", tag: "Mais popular" },
-  { coins: 1200, bonus: 200, price: "R$ 34,90", tag: null },
-  { coins: 3000, bonus: 700, price: "R$ 79,90", tag: "Melhor valor" },
-];
-
 const RANK_COLORS = ["text-amber-300", "text-slate-300", "text-amber-600"];
 
 export default async function CompetirPage() {
-  const [session, ranking, achievements, rooms] = await Promise.all([
+  const [session, ranking, achievements, rooms, paymentCatalog] = await Promise.all([
     getSession(),
     getLeaderboard(8),
     getAchievements(),
     getLiveRooms(),
+    getPaymentCatalog(),
   ]);
   const user = session
     ? { name: session.name, username: session.username, avatarUrl: session.avatarUrl }
@@ -146,29 +141,22 @@ export default async function CompetirPage() {
               </div>
             </ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {COIN_PACKS.map((p, i) => (
-                <ScrollReveal key={p.coins} delay={Math.min(i * 70, 280)}>
+              {paymentCatalog?.packs.map((pack, i) => (
+                <ScrollReveal key={pack.id} delay={Math.min(i * 70, 280)}>
                   <div
                     className={cn(
                       "relative flex h-full flex-col rounded-2xl border p-6 text-center transition-all duration-300 hover:-translate-y-1",
-                      p.tag === "Mais popular"
-                        ? "animate-pulse-glow border-amber-400/40 bg-amber-400/[0.07]"
-                        : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]",
+                      "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]",
                     )}
                   >
-                    {p.tag && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-amber-400 px-3 py-0.5 text-[10px] font-black uppercase tracking-wider text-black">
-                        {p.tag}
-                      </span>
-                    )}
                     <Coins className="animate-float mx-auto h-10 w-10 text-amber-300" />
                     <p className="mt-4 text-3xl font-black text-white">
-                      {p.coins.toLocaleString("pt-BR")}
+                      {pack.coins.toLocaleString("pt-BR")}
                     </p>
-                    <p className="text-xs text-slate-400">
-                      moedas{p.bonus > 0 && <span className="font-bold text-emerald-300"> +{p.bonus} bônus</span>}
+                    <p className="text-xs text-slate-400">{pack.label}</p>
+                    <p className="mt-4 text-xl font-black text-cyan-300">
+                      {pack.priceBrl.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </p>
-                    <p className="mt-4 text-xl font-black text-cyan-300">{p.price}</p>
                     <a href={`${APP_URL}/shop`} className="hx-hero-btn mt-5 w-full !px-4 !py-2.5">
                       Comprar no app
                     </a>
@@ -176,6 +164,11 @@ export default async function CompetirPage() {
                 </ScrollReveal>
               ))}
             </div>
+            {!paymentCatalog?.packs.length && (
+              <p className="mt-6 text-center text-sm text-slate-400">
+                Os pacotes de moedas estão temporariamente indisponíveis. Acesse a loja pelo app para consultar as opções atuais.
+              </p>
+            )}
           </div>
         </section>
 

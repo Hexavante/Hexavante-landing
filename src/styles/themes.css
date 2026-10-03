@@ -193,12 +193,6 @@
   background-color: rgba(220, 38, 38, 0.09);
 }
 
-/* glows radiais do corpo (inline via applyLandingTheme → precisa !important) */
-[data-theme-mode="light"] {
-  --theme-glow-1: rgba(220, 38, 38, 0.1) !important;
-  --theme-glow-2: rgba(193, 18, 31, 0.07) !important;
-}
-
 /* ═══ Efeitos de tema (fx-*) ═══════════════════════════════════════════ */
 /* Ativados via classes no <body> pelo ThemeSwitcher. */
 
