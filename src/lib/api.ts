@@ -247,6 +247,32 @@ export async function getSession(): Promise<SessionUser | null> {
   }
 }
 
+export interface CoinPack {
+  id: string;
+  coins: number;
+  priceBrl: number;
+  label: string;
+}
+
+export interface PremiumOffer {
+  id: string;
+  priceBrl: number;
+  days: number;
+  label: string;
+}
+
+export interface PaymentCatalog {
+  packs: CoinPack[];
+  premium: PremiumOffer | null;
+}
+
+/** Catálogo público de compra de moedas (preços sempre vêm da API, nunca hardcoded). */
+export async function getPaymentCatalog(): Promise<PaymentCatalog | null> {
+  const res = await getJson<PaymentCatalog>("/api/v1/payments/catalog");
+  if (!res || !Array.isArray(res.packs)) return null;
+  return { packs: res.packs, premium: res.premium ?? null };
+}
+
 export interface RankEntry {
   rank: number;
   userId: string;

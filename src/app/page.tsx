@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, FileText, GraduationCap, Play, Sparkles, Target, Users, Download } from "lucide-react";
+import { ArrowRight, BookOpen, Coins, FileText, GraduationCap, Play, Sparkles, Target, Users, Download } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { HeroImage } from "@/components/hero-image";
@@ -252,6 +252,37 @@ export default async function HomePage() {
             </Link>
           </div>
         </section>
+
+        {/* ───── MOEDAS CTA ───── */}
+        <ScrollReveal>
+          <section className="border-t border-white/[0.06] py-16 sm:py-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-12">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/[0.07] via-transparent to-transparent" />
+                <div className="relative flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="max-w-xl">
+                    <div className="mb-4 inline-flex items-center gap-2 hx-intro-chip">
+                      <Coins className="h-3.5 w-3.5" />
+                      Moedas
+                    </div>
+                    <h2 className="text-2xl font-black tracking-tight text-[hsl(var(--sidebar-foreground))] sm:text-3xl">
+                      Moedas Hexavante
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-[hsl(var(--sidebar-foreground)/0.56)] sm:text-base">
+                      Desbloqueie cosméticos, itens e vantagens na loja da plataforma. Pague com
+                      Pix ou cartão pelo Mercado Pago e receba o crédito na sua conta.
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 flex-col gap-3 sm:items-end">
+                    <Link href="/moedas" className="hx-hero-btn px-8 py-4">
+                      Comprar moedas <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
 
         {/* ───── CERTIFICATES ───── */}
         <section id="certificados" className="border-t border-white/[0.06] bg-white/[0.02] py-24 sm:py-32">
