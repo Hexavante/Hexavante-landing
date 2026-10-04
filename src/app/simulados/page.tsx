@@ -1,11 +1,11 @@
-import { Target } from "lucide-react";
+import { ArrowRight, Target, Trophy } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ExamCard, EmptyState } from "@/components/cards";
 import { FilterBar, SearchField, SubmitButton, TypePills } from "@/components/filters";
-import { EXAM_TYPE_LABELS, getExams, getSession } from "@/lib/api";
+import { APP_URL, EXAM_TYPE_LABELS, getExams, getSession } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +22,7 @@ export default async function ExamsPage({ searchParams }: Props) {
   const user = session
     ? { name: session.name, username: session.username, avatarUrl: session.avatarUrl }
     : null;
+  const longExam = exams.find((exam) => exam.questionCount >= 100);
 
   const extra = new URLSearchParams();
   if (params.q) extra.set("q", params.q);
@@ -83,6 +84,26 @@ export default async function ExamsPage({ searchParams }: Props) {
 
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            {longExam && !params.q && !params.tipo && (
+              <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                <div className="flex items-start gap-3">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-400/10 text-amber-300">
+                    <Trophy className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-amber-200">Desafio especial</p>
+                    <h2 className="mt-1 font-bold text-[hsl(var(--sidebar-foreground))]">{longExam.title}</h2>
+                    <p className="mt-1 text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
+                      {longExam.questionCount} questões. Conclua no app para desbloquear a conquista Maratona Hexavante.
+                    </p>
+                  </div>
+                </div>
+                <a href={`${APP_URL}/simulados/${longExam.slug}`} className="hx-hero-btn shrink-0 px-5 py-3">
+                  Fazer desafio <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            )}
+
             <p className="mb-8 text-sm text-[hsl(var(--sidebar-foreground)/0.5)]">
               <span className="font-semibold text-[hsl(var(--sidebar-foreground))]">{exams.length}</span>{" "}
               simulados encontrados

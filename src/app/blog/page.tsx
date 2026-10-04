@@ -17,9 +17,9 @@ import { getCourses, getSession, getTutorials } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog | Hexavante",
+  title: "Conteúdos | Hexavante",
   description:
-    "Novidades, bastidores e dicas de estudo da plataforma educacional Hexavante. Acompanhe enquanto o blog ganha vida.",
+    "Explore cursos e tutoriais publicados na plataforma educacional Hexavante.",
 };
 
 const APP_URL =
@@ -76,13 +76,13 @@ export default async function BlogPage() {
               <div className="mx-auto max-w-2xl text-center">
                 <div className="mb-5 inline-flex items-center gap-2 hx-intro-chip">
                   <Newspaper className="h-3.5 w-3.5" />
-                  Blog
+                  Conteúdos
                 </div>
                 <h1 className="text-4xl font-black tracking-tight text-[hsl(var(--sidebar-foreground))] sm:text-5xl">
-                  Novidades do <span className="hx-accent-text">Hexavante</span>
+                  Conteúdos do <span className="hx-accent-text">Hexavante</span>
                 </h1>
                 <p className="mt-5 text-base leading-relaxed text-[hsl(var(--sidebar-foreground)/0.56)] sm:text-lg">
-                  Novidades da plataforma e conteúdos para seguir aprendendo.
+                  Cursos completos e tutoriais práticos para continuar aprendendo.
                 </p>
                 <p className="mt-4 text-xs text-[hsl(var(--sidebar-foreground)/0.5)]">
                   Explore os cursos e tutoriais publicados recentemente.

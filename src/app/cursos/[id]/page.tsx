@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { APP_URL, LEVEL_LABELS, getCourse, getSession } from "@/lib/api";
+import { APP_URL, COURSE_TYPE_LABELS, LEVEL_LABELS, getCourse, getSession } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +47,7 @@ export default async function CourseDetailPage({ params }: Props) {
               <div className="p-6 sm:p-8">
                 <div className="flex flex-wrap gap-2">
                   <span className="hx-chip !text-xs">{LEVEL_LABELS[course.level] ?? course.level}</span>
-                  <span className="hx-chip !text-xs">{course.courseType}</span>
+                  <span className="hx-chip !text-xs">{COURSE_TYPE_LABELS[course.courseType] ?? course.courseType}</span>
                 </div>
                 <h1 className="mt-4 text-2xl font-black text-[hsl(var(--sidebar-foreground))] sm:text-3xl">
                   {course.title}

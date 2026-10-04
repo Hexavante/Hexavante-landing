@@ -417,3 +417,9 @@ export const LEVEL_LABELS: Record<string, string> = {
   INTERMEDIATE: "Intermediário",
   ADVANCED: "Avançado",
 };
+
+export const COURSE_TYPE_LABELS: Record<string, string> = {
+  FREE: "Gratuito",
+  PAID: "Pago",
+  PREMIUM: "Premium",
+};

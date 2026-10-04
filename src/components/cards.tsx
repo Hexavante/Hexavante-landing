@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { BookOpen, Clock3, Crown, FileText, GraduationCap, Play, Target, Users } from "lucide-react";
+import { BookOpen, Clock3, Crown, FileText, GraduationCap, Play, Target, Trophy, Users } from "lucide-react";
 import {
   EXAM_TYPE_LABELS,
+  COURSE_TYPE_LABELS,
   LEVEL_LABELS,
   formatDuration,
   type Certificate,
@@ -38,7 +39,6 @@ const cardClass =
 const titleClass =
   "text-sm font-bold text-[hsl(var(--sidebar-foreground))] line-clamp-2 group-hover:hx-accent-text transition";
 const metaClass = "text-xs text-[hsl(var(--sidebar-foreground)/0.5)]";
-
 export function CourseCard({ course }: { course: Course }) {
   return (
     <Link href={`/cursos/${course.slug}`} className={cardClass}>
@@ -54,7 +54,7 @@ export function CourseCard({ course }: { course: Course }) {
           {course.courseType !== "FREE" && (
             <span className="hx-chip !border-amber-400/30 !bg-amber-400/10 !text-[10px] text-amber-300">
               <Crown className="h-3 w-3" />
-              {course.courseType}
+              {COURSE_TYPE_LABELS[course.courseType] ?? course.courseType}
             </span>
           )}
         </div>
@@ -101,7 +101,7 @@ export function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
           <span className="flex items-center gap-1">
             <Clock3 className="h-3 w-3" /> {formatDuration(tutorial.duration)}
           </span>
-          <span>{tutorial.viewCount} views</span>
+          <span>{tutorial.viewCount} visualizações</span>
         </div>
         <p className={`mt-2 truncate ${metaClass}`}>por {tutorial.authorName}</p>
       </div>
@@ -127,6 +127,11 @@ export function ExamCard({ exam }: { exam: Exam }) {
           {exam.isPremiumOnly && (
             <span className="hx-chip !border-amber-400/30 !bg-amber-400/10 !text-[10px] text-amber-300">
               <Crown className="h-3 w-3" /> Premium
+            </span>
+          )}
+          {exam.questionCount >= 100 && (
+            <span className="hx-chip !border-amber-400/30 !bg-amber-400/10 !text-[10px] text-amber-300">
+              <Trophy className="h-3 w-3" /> Conquista especial
             </span>
           )}
         </div>
