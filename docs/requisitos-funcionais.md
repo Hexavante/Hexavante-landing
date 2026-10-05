@@ -32,6 +32,16 @@ Documento de referência do comportamento **implementado** nas páginas.
 
 | ID | Requisito |
 |----|-----------|
-| RF-10 | Header com mega-menu, rodapé com sociais reais, música de fundo opcional |
+| RF-10 | Header com mega-menu, rodapé com as três redes oficiais (YouTube, Instagram, Discord) |
 | RF-11 | Animações de scroll e decoração sem travar mobile |
 | RF-12 | Contagem de views de tutorial (`POST /tutorials/:id/view`) ao abrir o detalhe |
+
+## Páginas novas
+
+| ID | Requisito |
+|----|-----------|
+| RF-13 | `/blog` exibe **Conteúdos** (tutoriais e cursos recentes) + canais oficiais |
+| RF-14 | `/moedas` exibe o catálogo de pacotes (Mercado Pago) e leva ao app para concluir |
+| RF-15 | `/carreiras`, `/termos` e `/privacidade` publicadas (`force-static` nas jurídicas) |
+| RF-16 | `/certificados/c/[código]` valida certificado publicamente (QR antigos preservados) |
+| RF-17 | Tema sincronizado com a conta (`app/api/account/themes`): equipado via inventário, não equipado bloqueado |

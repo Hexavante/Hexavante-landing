@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="#português">🇧🇷 Português</a> · <a href="#english">🇺🇸 English</a> · <a href="docs/visao-geral.md">Docs</a>
+  <a href="#português">🇧🇷 Português</a> · <a href="#english">🇺🇸 English</a> · <a href="docs/visão-geral.md">Docs</a>
 </p>
 
 ---
@@ -56,10 +56,13 @@ Navegador ──HTTPS──▶ Nginx ──▶ hexavante-landing:3001 ──fetc
 src/
 ├── app/                  # / (vitrine), /cursos, /tutorials, /simulados (+/[id]),
 │                         # /competir, /plataforma, /sobre (time + dado 3D),
-│                         # /blog, /carreiras, /termos, /privacidade
-├── components/           # site-header (mega-menu), site-footer, cards, filters,
-│                         # badge, feature-cards, floating-decor, scroll-reveal,
-│                         # video-embed, team-dice, faq-accordion...
+│                         # /blog (Conteúdos), /moedas, /carreiras, /termos,
+│                         # /privacidade, /certificados/c/[code] (verificação)
+├── app/api/account/themes # Tema escolhido pela conta (leitura server-side)
+├── components/           # site-header (mega-menu), site-footer (3 redes), cards,
+│                         # filters, badge, feature-cards, floating-decor,
+│                         # scroll-reveal, video-embed, team-dice, faq-accordion,
+│                         # theme-provider/switcher, coin-shop...
 ├── lib/api.ts            # Tipos + fetchers (revalidação 60s)
 └── styles/               # themes, components, animations (design próprio)
 public/brand/             # logo + mascote
@@ -70,13 +73,15 @@ public/brand/             # logo + mascote
 | Página | Conteúdo |
 |---|---|
 | `/` | Hero + mascote, stats, features, prévias, certificados (só logado), CTA |
-| `/cursos`, `/tutorials`, `/simulados` | Catálogos com busca, filtros e paginação |
+| `/cursos`, `/tutorials`, `/simulados` | Catálogos com busca, filtros e paginação (simulados com card de maratona) |
 | `/cursos/[id]`, `/tutorials/[id]`, `/simulados/[id]` | Prévia pública + CTA para o app (matrícula/prova/compra só no app) |
 | `/competir` | Ranking real, loja de moedas, sala em destaque, conquistas |
+| `/moedas` | Compra de moedas Hexavante (catálogo Mercado Pago, só concluir no app) |
 | `/plataforma` | Estatísticas, Hexa, ajuda (sanfona), sobre |
 | `/sobre` | Time do TCC + dado 3D interativo |
-| `/blog` | Novidades (artigos em preparação) + canais oficiais |
+| `/blog` | **Conteúdos**: tutoriais e cursos recentes + canais oficiais |
 | `/carreiras` | Vagas, áreas, candidatura de instrutor (só redes, sem e-mail) |
+| `/certificados/c/[código]` | Verificação pública de certificado (QR antigos preservados) |
 | `/termos`, `/privacidade` | Páginas jurídicas estáticas (`force-static`) |
 
 Login é detectado via cookie compartilhado `.hexavante.com.br` encaminhado à API. Deslogado sempre vê CTA — nunca quebra.
@@ -109,6 +114,8 @@ npm run dev            # http://localhost:3001
 ### Design
 
 Fonte Space Grotesk global; header com mega-menu, `FloatingDecor`, `ScrollReveal`, chips `hx-intro-chip`, acento `hx-accent-text`. Vídeos: YouTube/Vimeo/mp4 embedados, resto abre no provedor.
+
+Temas: seletor próprio e tema sincronizado com a conta (lido no layout via `app/api/account/themes`, itens do inventário equipados; não equipados ficam bloqueados). Footer com as três redes oficiais (YouTube, Instagram, Discord).
 
 ### Deploy
 
@@ -144,7 +151,7 @@ Nginx já roteia `hexavante.com.br` → `:3001`.
 
 ### Documentação técnica (`docs/`)
 
-`visao-geral`, `requisitos-funcionais`, `regras-de-negocio`, `casos-de-uso`, `der-conceitual`, `der-logico`, `glossario`, `stack`, `permissoes`, `instalacao-e-desenvolvimento`, `deploy-producao`, `escopo-mvp`.
+`visão-geral`, `requisitos-funcionais`, `regras-de-negocio`, `casos-de-uso`, `der-conceitual`, `der-logico`, `glossario`, `stack`, `permissoes`, `instalacao-e-desenvolvimento`, `deploy-producao`, `escopo-mvp`.
 
 ---
 

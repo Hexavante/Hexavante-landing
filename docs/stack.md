@@ -38,7 +38,7 @@ Documento de referência da arquitetura **implementada** no repositório.
 
 | Pasta | Responsabilidade |
 |-------|------------------|
-| `src/app/` | Rotas e páginas (listas, detalhes, competir, plataforma, sobre) |
+| `src/app/` | Rotas e páginas (listas, detalhes, competir, plataforma, sobre, blog/Conteúdos, moedas, carreiras, jurídicas, verificação de certificado) |
 | `src/components/` | Header, footer, cards, filtros, decoração e interações |
 | `src/lib/api.ts` | Tipos e fetchers — único ponto de contato com dados |
 | `src/styles/` | Temas, componentes (`hx-*`), animações |
