@@ -2,3 +2,15 @@ node_modules
 .next
 *.log
 .env*.local
+
+# IA — nunca versionar
+.opencode/
+opencode.json
+opencode.jsonc
+AGENTS.md
+.claude/
+.cursor/
+.aider*
+
+# Build do TypeScript — artefato local, não versionar
+*.tsbuildinfo
