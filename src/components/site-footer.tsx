@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { HexavanteLogo } from "@/components/brand-logo";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
+import { APP_URL } from "@/lib/urls";
 
 /** Convite do Discord — fonte única (coluna Comunidade + links sociais). */
 const DISCORD_URL = "https://discord.gg/UgNRJYX9e";
@@ -22,7 +20,7 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
-  { label: "Central de ajuda", href: `${APP_URL}/ajuda` },
+  { label: "Central de ajuda", href: "/ajuda" },
   { label: "Termos de uso", href: "/termos" },
   { label: "Privacidade", href: "/privacidade" },
 ];
@@ -96,7 +94,7 @@ export function SiteFooter() {
                 {column.title === "Produto" && (
                   <li>
                     <a
-                      href={`${APP_URL}/hexa`}
+                      href={`${APP_URL}/shop`}
                       className="text-sm text-amber-400 transition hover:text-amber-300"
                     >
                       Hexa ✦

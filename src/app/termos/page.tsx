@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { FileText } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -13,9 +14,6 @@ export const metadata: Metadata = {
   description:
     "Termos de uso da plataforma educacional Hexavante: cadastro, conteúdo, gamificação, certificados, conduta da comunidade, propriedade intelectual e condições gerais.",
 };
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
 
 const sections = [
   {
@@ -181,12 +179,9 @@ export default async function TermosPage() {
                   Precisa de ajuda com a sua conta?
                 </p>
                 <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a
-                    href={`${APP_URL}/ajuda`}
-                    className="hx-btn-primary px-5 py-2.5 text-sm"
-                  >
+                  <Link href="/ajuda" className="hx-btn-primary px-5 py-2.5 text-sm">
                     Central de ajuda
-                  </a>
+                  </Link>
                   <a
                     href="mailto:suporte@hexavante.com.br"
                     className="hx-btn-secondary px-5 py-2.5 text-sm"

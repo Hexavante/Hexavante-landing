@@ -19,11 +19,11 @@ const FAQS = [
   },
 ];
 
-export function FaqAccordion() {
+export function FaqAccordion({ className = "mt-5 space-y-2" }: { className?: string }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="mt-5 space-y-2">
+    <div className={className}>
       {FAQS.map((f, i) => {
         const isOpen = open === i;
         return (

@@ -5,7 +5,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { TeamDice } from "@/components/team-dice";
-import { TEAM, initials } from "@/lib/team";
+import { TeamAvatar } from "@/components/team-avatar";
+import { TEAM } from "@/lib/team";
 import { APP_URL, getSession } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -82,9 +83,7 @@ export default async function SobrePage() {
               {TEAM.map((m, i) => (
                 <ScrollReveal key={m.name} delay={Math.min(i * 60, 300)}>
                   <div className="flex items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition hover:border-white/[0.12]">
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-cyan-400/15 text-sm font-black text-cyan-300">
-                      {initials(m.name)}
-                    </span>
+                    <TeamAvatar name={m.name} src={m.image} size="md" />
                     <div className="min-w-0">
                       <p className="truncate text-sm font-bold text-[hsl(var(--sidebar-foreground))]">
                         {m.name}

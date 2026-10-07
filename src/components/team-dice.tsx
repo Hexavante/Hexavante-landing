@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Dices } from "lucide-react";
+import { TeamAvatar } from "@/components/team-avatar";
 import { TEAM } from "@/lib/team";
 
 const SIZE = 112;
@@ -125,9 +126,12 @@ export function TeamDice() {
 
       {member ? (
         <div key={`${member.name}-${rolls}`} className="anim-enter-scale mt-8 rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.06] p-8">
-          <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-cyan-400/20 text-xl font-black text-cyan-300">
-            {member.name.split(" ").filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
-          </span>
+          <TeamAvatar
+            name={member.name}
+            src={member.image}
+            size="lg"
+            className="mx-auto ring-2 ring-cyan-400/25"
+          />
           <p className="mt-4 text-xl font-black text-white">{member.name}</p>
           <p className="mx-auto mt-2 max-w-sm text-sm text-[hsl(var(--sidebar-foreground)/0.6)]">
             {member.role}

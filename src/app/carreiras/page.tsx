@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { getSession } from "@/lib/api";
+import { APP_URL } from "@/lib/urls";
 
 export const dynamic = "force-dynamic";
 
@@ -14,9 +15,6 @@ export const metadata: Metadata = {
   description:
     "Trabalhe com a Hexavante: como participar do time, como se tornar instrutor e onde acompanhar as vagas abertas da plataforma educacional.",
 };
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
 
 /** Mesma fonte usada no rodapé — sem e-mail de contato inventado. */
 const socials = [

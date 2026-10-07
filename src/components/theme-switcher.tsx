@@ -5,8 +5,7 @@ import { Check, Lock, Palette } from "lucide-react";
 import Link from "next/link";
 import { LANDING_THEMES } from "@/lib/themes";
 import { useLandingTheme } from "@/components/theme-provider";
-
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
+import { APP_URL } from "@/lib/urls";
 
 export function ThemeSwitcher() {
   const [open, setOpen] = useState(false);

@@ -34,6 +34,7 @@ Nginx já roteia `hexavante.com.br` → `:3001` (sem mudança necessária salvo 
 ```bash
 curl http://localhost:3001/          # 200
 curl http://localhost:3001/sobre     # 200
+curl http://localhost:3001/ajuda     # 200
 docker logs hexavante-landing        # sem erro
 ```
 

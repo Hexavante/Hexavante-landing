@@ -45,3 +45,4 @@ Documento de referência do comportamento **implementado** nas páginas.
 | RF-15 | `/carreiras`, `/termos` e `/privacidade` publicadas (`force-static` nas jurídicas) |
 | RF-16 | `/certificados/c/[código]` valida certificado publicamente (QR antigos preservados) |
 | RF-17 | Tema sincronizado com a conta (`app/api/account/themes`): equipado via inventário, não equipado bloqueado |
+| RF-18 | `/ajuda` central de ajuda pública (busca + artigos por categoria + suporte por e-mail), migrada do app |

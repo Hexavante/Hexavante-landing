@@ -8,11 +8,8 @@ export const API_BASE =
     ? "https://api.hexavante.com.br"
     : "http://localhost:3045");
 
-export const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL ||
-  (process.env.NODE_ENV === "production"
-    ? "https://app.hexavante.com.br"
-    : "http://localhost:3000");
+/** Fonte única em `@/lib/urls` — reexportado por compatibilidade. */
+export { APP_URL } from "@/lib/urls";
 
 export interface Pagination {
   page: number;

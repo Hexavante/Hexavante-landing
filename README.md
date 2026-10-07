@@ -57,12 +57,13 @@ src/
 ├── app/                  # / (vitrine), /cursos, /tutorials, /simulados (+/[id]),
 │                         # /competir, /plataforma, /sobre (time + dado 3D),
 │                         # /blog (Conteúdos), /moedas, /carreiras, /termos,
-│                         # /privacidade, /certificados/c/[code] (verificação)
+│                         # /privacidade, /ajuda (central de ajuda),
+│                         # /certificados/c/[code] (verificação)
 ├── app/api/account/themes # Tema escolhido pela conta (leitura server-side)
 ├── components/           # site-header (mega-menu), site-footer (3 redes), cards,
 │                         # filters, badge, feature-cards, floating-decor,
 │                         # scroll-reveal, video-embed, team-dice, faq-accordion,
-│                         # theme-provider/switcher, coin-shop...
+│                         # help-center, theme-provider/switcher, coin-shop...
 ├── lib/api.ts            # Tipos + fetchers (revalidação 60s)
 └── styles/               # themes, components, animations (design próprio)
 public/brand/             # logo + mascote
@@ -82,6 +83,7 @@ public/brand/             # logo + mascote
 | `/blog` | **Conteúdos**: tutoriais e cursos recentes + canais oficiais |
 | `/carreiras` | Vagas, áreas, candidatura de instrutor (só redes, sem e-mail) |
 | `/certificados/c/[código]` | Verificação pública de certificado (QR antigos preservados) |
+| `/ajuda` | Central de ajuda: busca + artigos por categoria (cursos, simulados, conta, Hexa) + suporte por e-mail |
 | `/termos`, `/privacidade` | Páginas jurídicas estáticas (`force-static`) |
 
 Login é detectado via cookie compartilhado `.hexavante.com.br` encaminhado à API. Deslogado sempre vê CTA — nunca quebra.

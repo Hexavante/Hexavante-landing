@@ -19,14 +19,12 @@ import {
   Settings,
   Sparkles,
   HelpCircle,
-  Users,
 } from "lucide-react";
 import { HexavanteLogo } from "@/components/brand-logo";
 import { SignOutButton } from "@/components/sign-out-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
+import { APP_URL } from "@/lib/urls";
+import { PLATFORM_AREAS } from "@/lib/platform-areas";
 
 export type LandingUser = {
   name?: string | null;
@@ -68,12 +66,13 @@ const megaMenus: Record<string, MegaMenuCategory> = {
   },
   plataforma: {
     title: "Plataforma",
-    items: [
-      { href: "/plataforma#plataforma-estatisticas", label: "Estatísticas", description: "Acompanhe seu desempenho com gráficos detalhados", icon: BarChart3, iconColor: "text-teal-400" },
-      { href: "/plataforma#plataforma-hexa", label: "Hexa", description: "O sistema de evolução e progressão do Hexavante", icon: Hexagon, iconColor: "text-amber-400" },
-      { href: "/plataforma#plataforma-ajuda", label: "Ajuda", description: "Dúvidas frequentes e suporte", icon: HelpCircle, iconColor: "text-sky-400" },
-      { href: "/plataforma#plataforma-sobre", label: "Sobre", description: "Conheça a equipe do TCC por trás do Hexavante", icon: Users, iconColor: "text-pink-400" },
-    ],
+    items: PLATFORM_AREAS.map((area) => ({
+      href: `/plataforma#plataforma-${area.id}`,
+      label: area.label,
+      description: area.description,
+      icon: area.icon,
+      iconColor: area.iconColor,
+    })),
   },
 };
 
@@ -224,10 +223,10 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                         { href: `${APP_URL}/app`, icon: BarChart3, label: "Meu painel" },
                         { href: `${APP_URL}/estatisticas`, icon: Sparkles, label: "Estatísticas" },
                         { href: `${APP_URL}/configuracoes`, icon: Settings, label: "Configurações" },
-                        { href: `${APP_URL}/hexa`, icon: Hexagon, label: "Hexa", iconClassName: "text-amber-400" },
-                        { href: `${APP_URL}/ajuda`, icon: HelpCircle, label: "Ajuda" },
+                        { href: `${APP_URL}/shop`, icon: Hexagon, label: "Hexa", iconClassName: "text-amber-400" },
+                        { href: "/ajuda", icon: HelpCircle, label: "Ajuda" },
                       ].map((item) => (
-                        <a
+                        <Link
                           key={item.href}
                           href={item.href}
                           onClick={() => setUserMenuOpen(false)}
@@ -235,7 +234,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                         >
                           <item.icon className={`h-4 w-4 ${item.iconClassName ?? ""}`} />
                           {item.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                     <div className="border-t border-white/[0.06] p-1.5">

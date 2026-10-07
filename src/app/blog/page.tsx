@@ -13,6 +13,7 @@ import { FloatingDecor } from "@/components/floating-decor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { CourseCard, EmptyState, TutorialCard } from "@/components/cards";
 import { getCourses, getSession, getTutorials } from "@/lib/api";
+import { APP_URL } from "@/lib/urls";
 
 export const dynamic = "force-dynamic";
 
@@ -21,9 +22,6 @@ export const metadata: Metadata = {
   description:
     "Explore cursos e tutoriais publicados na plataforma educacional Hexavante.",
 };
-
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.hexavante.com.br";
 
 const channels = [
   {
