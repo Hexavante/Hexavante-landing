@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HexavanteLogo } from "@/components/brand-logo";
-import { APP_URL } from "@/lib/urls";
 
 /** Convite do Discord — fonte única (coluna Comunidade + links sociais). */
 const DISCORD_URL = "https://discord.gg/UgNRJYX9e";
@@ -93,12 +92,12 @@ export function SiteFooter() {
                 )}
                 {column.title === "Produto" && (
                   <li>
-                    <a
-                      href={`${APP_URL}/shop`}
-                      className="text-sm text-amber-400 transition hover:text-amber-300"
+                    <Link
+                      href="/moedas"
+                      className="text-sm font-medium text-amber-400 transition hover:text-amber-300"
                     >
                       Hexa ✦
-                    </a>
+                    </Link>
                   </li>
                 )}
               </ul>

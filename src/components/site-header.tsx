@@ -223,7 +223,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                         { href: `${APP_URL}/app`, icon: BarChart3, label: "Meu painel" },
                         { href: `${APP_URL}/estatisticas`, icon: Sparkles, label: "Estatísticas" },
                         { href: `${APP_URL}/configuracoes`, icon: Settings, label: "Configurações" },
-                        { href: `${APP_URL}/shop`, icon: Hexagon, label: "Hexa", iconClassName: "text-amber-400" },
+                        { href: "/moedas", icon: Hexagon, label: "Hexa", iconClassName: "text-amber-400" },
                         { href: "/ajuda", icon: HelpCircle, label: "Ajuda" },
                       ].map((item) => (
                         <Link

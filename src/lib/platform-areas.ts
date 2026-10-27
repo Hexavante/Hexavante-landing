@@ -45,8 +45,8 @@ export const PLATFORM_AREAS: PlatformArea[] = [
     icon: Hexagon,
     iconColor: "text-amber-400",
     iconBg: "bg-amber-400/15",
-    // O app removeu `/hexa`: o estado premium hoje vive em `/shop`.
-    href: `${APP_URL}/shop`,
+    // Hexa é o plano premium/centro de moedas da própria landing.
+    href: "/moedas",
   },
   {
     id: "ajuda",

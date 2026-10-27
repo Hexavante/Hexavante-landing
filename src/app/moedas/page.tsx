@@ -68,7 +68,7 @@ export default async function CoinsPage() {
                     O catálogo de moedas está indisponível no momento. Tente novamente em
                     instantes.
                   </p>
-                  <a href={APP_URL} className="hx-btn-secondary mt-5 inline-flex px-5 py-2.5">
+                  <a href={`${APP_URL}/app`} className="hx-btn-secondary mt-5 inline-flex px-5 py-2.5">
                     Ir para a plataforma
                   </a>
                 </div>

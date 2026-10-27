@@ -97,7 +97,7 @@ export function ThemeSwitcher() {
             })}
             {error && <p role="alert" className="px-2.5 py-2 text-xs text-rose-400">{error}</p>}
             {!authenticated && (
-              <Link href={APP_URL} className="mt-1 block rounded-lg border-t border-white/[0.08] px-2.5 py-2.5 text-xs font-semibold text-[hsl(var(--sidebar-highlight))] hover:bg-white/[0.04]">
+              <Link href={`${APP_URL}/login`} className="mt-1 block rounded-lg border-t border-white/[0.08] px-2.5 py-2.5 text-xs font-semibold text-[hsl(var(--sidebar-highlight))] hover:bg-white/[0.04]">
                 Entre no app para liberar temas
               </Link>
             )}

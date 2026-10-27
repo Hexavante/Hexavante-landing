@@ -62,7 +62,7 @@ export default async function HomePage() {
                   <div className="mt-10 flex flex-wrap gap-4">
                     {user ? (
                       <>
-                        <a href={APP_URL} className="hx-hero-btn px-8 py-4">
+                        <a href={`${APP_URL}/app`} className="hx-hero-btn px-8 py-4">
                           Ir para o painel <ArrowRight className="h-4 w-4" />
                         </a>
                         <a href="/cursos" className="hx-btn-secondary px-8 py-4">
@@ -369,7 +369,7 @@ export default async function HomePage() {
                   : "Crie sua conta gratuita e comece a aprender hoje. Sem cartão de crédito, sem compromisso."}
               </p>
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a href={user ? APP_URL : `${APP_URL}/register`} className="hx-hero-btn px-9 py-4">
+                <a href={user ? `${APP_URL}/app` : `${APP_URL}/register`} className="hx-hero-btn px-9 py-4">
                   {user ? "Ir para o painel" : "Criar conta grátis"}
                   <ArrowRight className="h-4 w-4" />
                 </a>
