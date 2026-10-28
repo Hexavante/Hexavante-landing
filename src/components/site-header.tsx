@@ -9,7 +9,6 @@ import {
   X,
   BookOpen,
   Target,
-  Award,
   Trophy,
   ShoppingBag,
   Radio,
@@ -52,7 +51,6 @@ const megaMenus: Record<string, MegaMenuCategory> = {
       { href: "/cursos", label: "Cursos", description: "Videoaulas e materiais organizados por disciplina", icon: BookOpen, iconColor: "text-cyan-400" },
       { href: "/tutorials", label: "Tutoriais", description: "Guias práticos criados pela comunidade", icon: FileText, iconColor: "text-blue-400" },
       { href: "/simulados", label: "Simulados", description: "Provas simuladas com correção automática", icon: Target, iconColor: "text-rose-400" },
-      { href: "/#certificados", label: "Certificados", description: "Certifique seu conhecimento e destaque seu currículo", icon: Award, iconColor: "text-emerald-400" },
     ],
   },
   competir: {

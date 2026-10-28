@@ -1,0 +1,47 @@
+.home { --primary: #168ce8; --primary-hover: #38bdf8; --accent: #22d3ee; }
+.hero { background: radial-gradient(ellipse at 80% 45%, #068fc01c, transparent 52%); }
+.hero h1 { font-size: clamp(2.75rem, 5.2vw, 4.75rem); line-height: 1.07; letter-spacing: -.055em; }
+.headlineAccent { display: block; background: linear-gradient(110deg, #22d3ee, #3b82f6); background-clip: text; color: transparent; }
+.statusDot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px; box-shadow: 0 0 12px #22d3ee66; }
+.heroNote { display: flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 12px; color: hsl(var(--sidebar-foreground) / .6); }
+.heroNote svg { color: #22b8df; }
+.heroVisual { position: relative; display: grid; place-items: center; min-height: 470px; isolation: isolate; }
+.heroVisual::before { content: ""; position: absolute; inset: 7%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, #1599dc25, #1579cc08 60%, transparent 72%); }
+.heroVisual > img { max-width: 90%; filter: drop-shadow(0 20px 35px #008edb26); }
+.orbit { position: absolute; inset: 8% 0; z-index: -1; border: 1px solid #38bdf82b; border-radius: 50%; transform: rotate(-25deg); }
+.orbit::before { content: ""; position: absolute; inset: 30px -15px; border: 1px dashed #38bdf82b; border-radius: 50%; transform: rotate(55deg); }
+.orbit::after { content: ""; position: absolute; left: 20%; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 24px #22d3ee88; }
+.visualLabel { position: absolute; top: 5px; color: hsl(var(--sidebar-foreground) / .45); font-size: 9px; font-weight: 700; letter-spacing: .28em; }
+.floatingCard { position: absolute; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px solid #38bdf82b; border-radius: 16px; background: var(--background); box-shadow: 0 12px 35px #0002; }
+.floatingCard > svg { width: 35px; height: 35px; padding: 8px; border-radius: 10px; color: #22b8df; background: #22d3ee12; }
+.floatingCard strong { display: block; font-size: 12px; color: hsl(var(--sidebar-foreground) / .92); }
+.floatingCard span { display: block; margin-top: 4px; font-size: 10px; color: hsl(var(--sidebar-foreground) / .55); }
+.cardTop { top: 35px; right: -8px; transform: rotate(3deg); }
+.cardBottom { bottom: 8px; left: 0; transform: rotate(-3deg); }
+.statsBar { margin-inline: auto; max-width: 1232px; border: 1px solid #38bdf81f; border-radius: 20px; background: linear-gradient(110deg, #0ea5e908, #2563eb05); }
+.learningStrip { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; padding: 28px 32px; }
+.learningStrip > span { display: flex; align-items: center; gap: 9px; font-size: 12px; color: hsl(var(--sidebar-foreground) / .7); }
+.learningStrip > span:first-child { font-size: 9px; font-weight: 700; letter-spacing: .16em; color: hsl(var(--sidebar-foreground) / .45); }
+.learningStrip svg { color: #20afdf; }
+.home :global(.hx-hero-btn) { background: linear-gradient(105deg, #087da7, #2563eb); color: #fff; border-radius: 12px; box-shadow: 0 6px 24px #0284c720; }
+.home :global(.hx-hero-btn):hover { filter: brightness(1.12); transform: translateY(-2px); }
+.home :global(.hx-btn-secondary) { border-radius: 12px; }
+.home a:focus-visible { outline: 2px solid #38bdf8; outline-offset: 4px; }
+.finalCta { margin: 20px auto 70px; max-width: 1232px; border: 1px solid #38bdf82b; border-radius: 28px; background: radial-gradient(ellipse at 50% 0, #0899c920, transparent 70%); }
+@media (max-width: 1023px) {
+  .heroVisual { min-height: 360px; max-width: 500px; margin-inline: auto; }
+  .heroVisual > img { height: 300px; }
+  .hero { padding-bottom: 48px; }
+  .statsBar, .finalCta { margin-inline: 16px; }
+}
+@media (max-width: 600px) {
+  .heroVisual { min-height: 320px; }
+  .heroVisual > img { height: 250px; }
+  .floatingCard { padding: 12px; gap: 8px; }
+  .floatingCard strong { font-size: 11px; }
+  .cardTop { top: 42px; right: 0; }
+  .cardBottom { bottom: -4px; }
+  .learningStrip { display: grid; grid-template-columns: 1fr; gap: 18px; padding: 24px; }
+  .visualLabel { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .home a { transition: none; } }

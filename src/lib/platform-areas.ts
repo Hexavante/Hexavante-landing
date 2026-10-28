@@ -1,8 +1,8 @@
-import { BarChart3, HelpCircle, Hexagon, Users, type LucideIcon } from "lucide-react";
+import { BarChart3, HelpCircle, Hexagon, type LucideIcon } from "lucide-react";
 import { APP_URL } from "@/lib/urls";
 
 /**
- * As quatro áreas da página /plataforma.
+ * As três áreas da página /plataforma.
  *
  * Fonte única usada por:
  * - `components/showcase-cards.tsx` (cards do showcase)
@@ -57,15 +57,6 @@ export const PLATFORM_AREAS: PlatformArea[] = [
     iconBg: "bg-sky-400/15",
     // Central de ajuda é página pública da própria landing.
     href: "/ajuda",
-  },
-  {
-    id: "sobre",
-    label: "Sobre",
-    description: "Conheça a equipe do TCC por trás do Hexavante",
-    icon: Users,
-    iconColor: "text-pink-400",
-    iconBg: "bg-pink-400/15",
-    href: "/sobre",
   },
 ];
 

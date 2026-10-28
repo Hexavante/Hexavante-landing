@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
 import { FaqAccordion } from "@/components/faq-accordion";
-import { TeamAvatar } from "@/components/team-avatar";
-import { TEAM } from "@/lib/team";
 import { PLATFORM_AREAS, platformAnchor, type PlatformArea } from "@/lib/platform-areas";
 
 function CardShell({
@@ -173,64 +171,19 @@ function HexaPreview() {
   );
 }
 
-function TeamPreview() {
-  const shown = TEAM.slice(0, 4);
-
-  return (
-    <div className="flex h-full flex-col rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
-      <div className="flex items-center -space-x-2.5">
-        {shown.map((m) => (
-          <TeamAvatar
-            key={m.name}
-            name={m.name}
-            src={m.image}
-            size="md"
-            className="ring-2 ring-[hsl(var(--sidebar-background))]"
-          />
-        ))}
-        {TEAM.length > shown.length && (
-          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white/[0.06] text-[11px] font-black text-[hsl(var(--sidebar-foreground)/0.6)] ring-2 ring-[hsl(var(--sidebar-background))]">
-            +{TEAM.length - shown.length}
-          </span>
-        )}
-      </div>
-
-      <p className="mt-3 text-xs leading-relaxed text-[hsl(var(--sidebar-foreground)/0.55)]">
-        {TEAM.length} integrantes do TCC por trás do Hexavante — código, documentação,
-        pesquisa, marketing e design.
-      </p>
-
-      <div className="mt-4 space-y-2 border-t border-white/[0.06] pt-3">
-        {TEAM.slice(0, 2).map((m) => (
-          <div key={m.name} className="flex items-center gap-2">
-            <TeamAvatar name={m.name} src={m.image} size="sm" />
-            <div className="min-w-0">
-              <p className="truncate text-[11px] font-bold text-[hsl(var(--sidebar-foreground)/0.8)]">
-                {m.name}
-              </p>
-              <p className="truncate text-[10px] text-[hsl(var(--sidebar-foreground)/0.5)]">{m.role}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 /* ------------------------------------------------------------------ *
- * Cards das quatro áreas da /plataforma
+ * Cards das três áreas da /plataforma
  * ------------------------------------------------------------------ */
 
 const CTA_LABEL: Record<string, string> = {
   estatisticas: "Ver estatísticas no app",
   hexa: "Conhecer o Hexa",
-  sobre: "Conhecer a equipe",
 };
 
 function Preview({ id }: { id: string }) {
   if (id === "estatisticas") return <StatsPreview />;
   if (id === "hexa") return <HexaPreview />;
-  return <TeamPreview />;
+  return null;
 }
 
 function PlatformCard({ area }: { area: PlatformArea }) {
@@ -277,7 +230,7 @@ function PlatformCard({ area }: { area: PlatformArea }) {
 
 export function PlatformCards() {
   return (
-    <div className="grid gap-5 sm:grid-cols-2">
+    <div className="grid gap-5 lg:grid-cols-3">
       {PLATFORM_AREAS.map((area) => (
         <PlatformCard key={area.id} area={area} />
       ))}

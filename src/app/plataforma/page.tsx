@@ -34,11 +34,11 @@ export default async function PlataformaPage() {
                   Uma plataforma <span className="hx-accent-text">completa</span>
                 </h1>
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[hsl(var(--sidebar-foreground)/0.56)] sm:text-lg">
-                  Estatísticas, evolução, ajuda e equipe — uma prévia do que espera por
+                  Estatísticas, evolução e ajuda — uma prévia do que espera por
                   você dentro do app.
                 </p>
 
-                {/* indicadores das quatro áreas */}
+                {/* indicadores das três áreas */}
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
                   {PLATFORM_AREAS.map((area) => (
                     <a
@@ -68,7 +68,7 @@ export default async function PlataformaPage() {
               <div className="mx-auto mb-10 max-w-2xl text-center">
                 <div className="mb-5 inline-flex items-center gap-2 hx-intro-chip">
                   <Sparkles className="h-3.5 w-3.5" />
-                  Quatro áreas
+                  Três áreas
                 </div>
                 <h2 className="text-3xl font-black tracking-tight text-[hsl(var(--sidebar-foreground))] sm:text-4xl">
                   Tudo o que você precisa em um só lugar
@@ -99,7 +99,7 @@ export default async function PlataformaPage() {
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[hsl(var(--sidebar-foreground)/0.6)]">
                     Crie sua conta grátis e transforme a prévia em estatísticas reais, XP,
-                    progresso e certificados.
+                    progresso e novas conquistas.
                   </p>
                   <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                     <a href={appUrl("/register")} className="hx-hero-btn px-8 py-3.5">

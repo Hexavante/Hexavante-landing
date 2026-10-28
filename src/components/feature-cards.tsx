@@ -2,7 +2,7 @@
 
 import { BookOpen, Target, Trophy, BarChart3, Zap } from "lucide-react";
 import { Badge } from "@/components/badge";
-import { cn } from "@/lib/cn";
+
 
 type Feature = {
   icon: React.ElementType;
@@ -23,7 +23,7 @@ const features: Feature[] = [
     badge: "Mais popular",
     badgeVariant: "sky",
     bullets: ["Cursos com videoaulas", "Material complementar", "Progresso em tempo real"],
-    gradient: "from-cyan-500/20 via-blue-600/15 to-violet-600/10",
+    gradient: "from-cyan-500/20 via-blue-600/15 to-blue-600/10",
     mockupContent: (
       <div className="space-y-3 w-full">
         <div className="flex items-center gap-3 rounded-lg bg-white/[0.08] p-3">
@@ -32,7 +32,7 @@ const features: Feature[] = [
           <div className="h-5 w-12 rounded-full bg-emerald-400/20 text-[10px] font-bold text-emerald-300 flex items-center justify-center">85%</div>
         </div>
         <div className="flex items-center gap-3 rounded-lg bg-white/[0.05] p-3">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-violet-400/20 text-violet-300"><BookOpen className="h-4 w-4" /></div>
+          <div className="grid h-9 w-9 place-items-center rounded-lg bg-blue-400/20 text-blue-300"><BookOpen className="h-4 w-4" /></div>
           <div className="flex-1"><div className="h-2.5 w-32 rounded bg-white/15" /><div className="mt-1.5 h-1.5 w-24 rounded bg-white/10" /></div>
           <div className="h-5 w-12 rounded-full bg-amber-400/20 text-[10px] font-bold text-amber-300 flex items-center justify-center">42%</div>
         </div>
@@ -121,24 +121,24 @@ const features: Feature[] = [
 
 export function FeatureCards() {
   return (
-    <div className="space-y-20 lg:space-y-28">
-      {features.map((f, i) => {
-        const reversed = i % 2 === 1;
+    <div className="grid gap-5 lg:grid-cols-2">
+      {features.map((f) => {
+
         return (
-          <div key={f.title} className={cn("grid items-center gap-10 lg:grid-cols-2 lg:gap-16", reversed && "lg:[direction:rtl]")}>
-            <div className={cn("space-y-5", reversed && "lg:[direction:ltr]")}>
+          <div key={f.title} className="group flex flex-col overflow-hidden rounded-3xl border border-cyan-400/10 bg-[hsl(var(--sidebar-foreground)/0.025)] p-6 transition duration-300 hover:border-cyan-400/30 sm:p-8">
+            <div className="space-y-4">
               <Badge variant={f.badgeVariant}>{f.badge}</Badge>
-              <h3 className="text-3xl font-black tracking-tight text-[hsl(var(--sidebar-foreground))] sm:text-4xl">{f.title}</h3>
-              <p className="text-base leading-relaxed text-[hsl(var(--sidebar-foreground)/0.6)] sm:text-lg">{f.description}</p>
-              <ul className="space-y-3 pt-1">
+              <h3 className="text-2xl font-bold tracking-tight text-[hsl(var(--sidebar-foreground))]">{f.title}</h3>
+              <p className="text-sm leading-7 text-[hsl(var(--sidebar-foreground)/0.6)]">{f.description}</p>
+              <ul className="flex flex-wrap gap-x-4 gap-y-2 pt-1">
                 {f.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-3 text-sm text-[hsl(var(--sidebar-foreground)/0.78)] sm:text-base">
+                  <li key={b} className="flex items-center gap-3 text-xs text-[hsl(var(--sidebar-foreground)/0.7)]">
                     <Zap className="h-4 w-4 shrink-0 hx-accent-text" />{b}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className={cn("relative overflow-hidden rounded-2xl border border-white/10 p-6 sm:p-8 bg-gradient-to-br", f.gradient, reversed && "lg:[direction:ltr]")} style={{ boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.4)" }}>
+            <div className="relative mt-7 flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-cyan-400/10 bg-gradient-to-br from-cyan-500/10 to-blue-600/5 p-6 sm:p-8" style={{ boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.4)" }}>
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent" />
               <div className="relative flex items-center justify-center"><div className="w-full max-w-xs">{f.mockupContent}</div></div>
               <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/[0.04] blur-2xl" />
