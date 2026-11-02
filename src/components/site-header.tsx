@@ -113,9 +113,25 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
   }, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/[0.06] bg-[var(--background)]/80 backdrop-blur-xl">
+    <header onKeyDown={(event) => {
+      if (event.key !== "Escape") return;
+      const trigger = event.currentTarget.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
+      setActiveMega(null);
+      setMobileOpen(false);
+      setUserMenuOpen(false);
+      trigger?.focus();
+    }} className="fixed top-0 z-50 w-full border-b border-white/[0.06] bg-[var(--background)]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-3" aria-label="Hexavante">
+        <Link href="/" onClick={(event) => {
+          setActiveMega(null);
+          setMobileOpen(false);
+          setUserMenuOpen(false);
+          if (window.location.pathname === "/") {
+            event.preventDefault();
+            window.history.replaceState(window.history.state, "", "/");
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }
+        }} className="flex items-center gap-3" aria-label="Hexavante">
           <HexavanteLogo
             size="lg"
             showWordmark={false}
@@ -123,13 +139,15 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
             imageClassName="hx-header-logo-glow h-12 w-12"
           />
           <span
-            className="hx-wordmark text-xl font-black uppercase tracking-[0.25em] hx-accent-text"
+            className="hx-wordmark hidden sm:inline text-xl font-black uppercase tracking-[0.25em] hx-accent-text"
           >
             HEXAVANTE
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" onMouseLeave={closeMega}>
+        <nav className="hidden items-center gap-1 md:flex" onMouseLeave={closeMega} onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setActiveMega(null);
+        }}>
           {navOrder.map((key) => {
             const cat = megaMenus[key];
             const isOpen = activeMega === key;
@@ -137,7 +155,8 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
               <div key={key} className="relative">
                 <button
                   type="button"
-                  onMouseEnter={() => openMega(key)}
+                  aria-expanded={isOpen}
+                  aria-controls={`navigation-${key}`}
                   onClick={() => setActiveMega(isOpen ? null : key)}
                   className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200 ${
                     isOpen
@@ -151,6 +170,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
 
                 {isOpen && (
                   <div
+                    id={`navigation-${key}`}
                     className="absolute left-1/2 top-full z-50 mt-2 w-[520px] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/[0.08] bg-[hsl(var(--sidebar-background))] shadow-2xl shadow-black/50"
                     onMouseEnter={() => openMega(key)}
                     onMouseLeave={closeMega}
@@ -163,6 +183,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
                           <Link
                             key={item.href}
                             href={item.href}
+                            onClick={() => setActiveMega(null)}
                             className="group flex items-center gap-4 rounded-xl px-4 py-3 transition-all duration-150 hover:bg-white/[0.06]"
                           >
                             <div className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[0.06] transition-colors duration-150 group-hover:bg-white/[0.12] ${item.iconColor}`}>
@@ -195,6 +216,8 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
               <button
                 type="button"
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
+                aria-expanded={userMenuOpen}
+                aria-label="Menu da conta"
                 className="flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1.5 transition hover:bg-white/[0.08]"
               >
                 <AvatarCircle user={user} />
@@ -259,6 +282,9 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Fechar navegação" : "Abrir navegação"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
             className="rounded-lg p-2 text-[hsl(var(--sidebar-foreground)/0.6)] transition hover:bg-white/[0.06] hover:text-[hsl(var(--sidebar-foreground))] md:hidden"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -267,7 +293,7 @@ export function SiteHeader({ user }: { user: LandingUser | null }) {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/[0.06] bg-[var(--background)]/95 backdrop-blur-xl md:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-white/[0.06] bg-[var(--background)]/95 backdrop-blur-xl md:hidden">
           <div className="space-y-4 px-4 py-4">
             {navOrder.map((key) => {
               const cat = megaMenus[key];

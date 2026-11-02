@@ -27,6 +27,7 @@ export function LandingThemeProvider({
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ themeId }),
+        signal: AbortSignal.timeout(10_000),
       });
     } catch {
       return "Não foi possível conectar ao serviço de temas.";

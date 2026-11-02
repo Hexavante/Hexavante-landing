@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       data-theme-mode={initialTheme.mode}
       style={initialTheme.vars as CSSProperties}
     >
-      <body className={`app-shell overflow-x-hidden antialiased theme-${initialTheme.id} ${activeFx}`.trim()}>
+      <body id="inicio" className={`app-shell overflow-x-hidden antialiased theme-${initialTheme.id} ${activeFx}`.trim()}>
         <LandingThemeProvider initialState={accountTheme}>{children}</LandingThemeProvider>
       </body>
     </html>

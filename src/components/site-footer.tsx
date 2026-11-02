@@ -49,7 +49,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-4 lg:grid-cols-5">
           <div className="col-span-2 sm:col-span-4 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5" aria-label="Hexavante">
+            <Link href="/#inicio" className="flex items-center gap-2.5" aria-label="Hexavante">
               <HexavanteLogo
                 size="md"
                 showWordmark={false}

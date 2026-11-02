@@ -1,3 +1,5 @@
+import { appUrl } from "@/lib/urls";
+
 function youtubeId(url: string): string | null {
   const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
   return m?.[1] ?? null;
@@ -42,7 +44,9 @@ export function VideoEmbed({ url, title }: { url: string; title: string }) {
   if (/\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
     return (
       <video
-        src={url}
+        src={url.startsWith("/uploads/") ? appUrl(url) : url}
+        playsInline
+        aria-label={title}
         controls
         preload="metadata"
         /* text-[#fff] (e não text-white): o fallback é texto branco sobre o
