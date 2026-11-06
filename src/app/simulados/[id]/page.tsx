@@ -1,3 +1,4 @@
+import { publicMediaUrl } from "@/lib/urls";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ClipboardList, Clock3, Crown, Target } from "lucide-react";
@@ -37,7 +38,7 @@ export default async function ExamDetailPage({ params }: Props) {
             <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
               {exam.coverImage ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={exam.coverImage} alt={exam.title} className="aspect-video w-full object-cover" />
+                <img src={publicMediaUrl(exam.coverImage)} alt={exam.title} className="aspect-video w-full object-cover" />
               ) : (
                 <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-rose-500/15 to-amber-500/15">
                   <Target className="h-16 w-16 text-white/40" />

@@ -1,3 +1,4 @@
+import { publicMediaUrl } from "@/lib/urls";
 import Link from "next/link";
 import { BookOpen, Clock3, Crown, FileText, GraduationCap, Play, Target, Trophy, Users } from "lucide-react";
 import {
@@ -26,7 +27,7 @@ function Thumb({
     <div className={`aspect-video bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}>
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
+        <img src={publicMediaUrl(src)} alt={alt} className="h-full w-full object-cover" loading="lazy" />
       ) : (
         icon
       )}

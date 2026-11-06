@@ -1,3 +1,4 @@
+import { publicMediaUrl } from "@/lib/urls";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, Clock3, User } from "lucide-react";
@@ -37,7 +38,7 @@ export default async function CourseDetailPage({ params }: Props) {
             <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
               {course.thumbnailUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={course.thumbnailUrl} alt={course.title} className="aspect-video w-full object-cover" />
+                <img src={publicMediaUrl(course.thumbnailUrl)} alt={course.title} className="aspect-video w-full object-cover" />
               ) : (
                 <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-cyan-500/15 to-violet-500/15">
                   <BookOpen className="h-16 w-16 text-white/40" />

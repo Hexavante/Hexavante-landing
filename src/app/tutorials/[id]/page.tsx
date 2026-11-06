@@ -1,3 +1,4 @@
+import { publicMediaUrl } from "@/lib/urls";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock3, Eye } from "lucide-react";
@@ -41,7 +42,7 @@ export default async function TutorialDetailPage({ params }: Props) {
                 <VideoEmbed url={tutorial.videoUrl} title={tutorial.title} />
               ) : tutorial.thumbnailUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={tutorial.thumbnailUrl} alt={tutorial.title} className="aspect-video w-full object-cover" />
+                <img src={publicMediaUrl(tutorial.thumbnailUrl)} alt={tutorial.title} className="aspect-video w-full object-cover" />
               ) : null}
 
               <div className="p-6 sm:p-8">

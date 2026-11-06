@@ -19,3 +19,10 @@ export function appUrl(path = ""): string {
   if (!path) return APP_URL;
   return `${APP_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+/** Uploads pertencem ao app; arquivos da marca continuam locais à landing. */
+export function publicMediaUrl(value: string | null | undefined): string | undefined {
+  const url = value?.trim();
+  if (!url) return undefined;
+  return url.startsWith("/uploads/") ? APP_URL.replace(/\/$/, "") + url : url;
+}
