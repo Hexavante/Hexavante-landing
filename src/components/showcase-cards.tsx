@@ -104,8 +104,8 @@ function StatsPreview() {
         {bars.map((h, i) => (
           <div
             key={i}
-            className="animate-fade-in-up flex-1 rounded-t bg-gradient-to-t from-teal-400/40 to-teal-400/10"
-            style={{ height: `${h}%`, animationDelay: `${i * 90}ms` }}
+            className="flex-1 rounded-t bg-gradient-to-t from-teal-400/40 to-teal-400/10"
+            style={{ height: `${h}%` }}
           />
         ))}
       </div>

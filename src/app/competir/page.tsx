@@ -86,8 +86,7 @@ export default async function CompetirPage() {
                 {ranking.map((r, i) => (
                   <div
                     key={r.userId}
-                    className="animate-fade-in-up flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 transition hover:border-amber-400/25"
-                    style={{ animationDelay: `${Math.min(i * 70, 400)}ms` }}
+                    className=" flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 transition hover:border-amber-400/25"
                   >
                     <span className={cn("w-8 text-center text-sm font-black", RANK_COLORS[i] ?? "text-white/50")}>
                       #{r.rank}
@@ -257,8 +256,7 @@ export default async function CompetirPage() {
                 {achievements.map((a, i) => (
                   <div
                     key={a.key}
-                    className="animate-fade-in-up group flex items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30 hover:shadow-[0_16px_40px_-12px_rgba(251,191,36,0.3)]"
-                    style={{ animationDelay: `${Math.min(i * 50, 400)}ms` }}
+                    className=" group flex items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30 hover:shadow-[0_16px_40px_-12px_rgba(251,191,36,0.3)]"
                   >
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-amber-400/15 text-amber-300 transition-transform duration-300 group-hover:scale-110">
                       {i % 2 === 0 ? <Crown className="h-5 w-5" /> : <Medal className="h-5 w-5" />}

@@ -125,7 +125,7 @@ export function TeamDice() {
       </button>
 
       {member ? (
-        <div key={`${member.name}-${rolls}`} className="anim-enter-scale mt-8 rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.06] p-8">
+        <div key={`${member.name}-${rolls}`} className=" mt-8 rounded-2xl border border-cyan-400/25 bg-cyan-400/[0.06] p-8">
           <TeamAvatar
             name={member.name}
             src={member.image}
